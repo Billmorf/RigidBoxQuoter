@@ -11,7 +11,7 @@ iOS app for cardboard/rigid box manufacturing workshops, enabling management of 
 🚧 Work in progress — portfolio project
 
 ## Roadmap
-- [ ] Phase 1: Project setup
+- [x] Phase 1: Project setup
 - [ ] Phase 2: Raw Material CRUD
 - [ ] Phase 3: Pricing Calculator + Unit Tests
 - [ ] Phase 4: Offer creation UI
