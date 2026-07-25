@@ -18,4 +18,5 @@ struct ContentView: View {
 }
 #Preview {
     ContentView()
+        .modelContainer(for: RawMaterial.self, inMemory: true)
 }
