@@ -12,7 +12,7 @@ import SwiftData
 struct RigidBoxQuoterApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            
+            RawMaterial.self
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 
@@ -25,7 +25,7 @@ struct RigidBoxQuoterApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RawMaterialListView()
         }
         .modelContainer(sharedModelContainer)
     }
