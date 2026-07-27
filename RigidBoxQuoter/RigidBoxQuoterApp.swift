@@ -25,7 +25,7 @@ struct RigidBoxQuoterApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RawMaterialListView()
         }
         .modelContainer(sharedModelContainer)
     }
