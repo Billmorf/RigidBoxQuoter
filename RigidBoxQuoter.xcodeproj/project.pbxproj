@@ -10,14 +10,29 @@
 		A99148F73015EC0C001975C5 /* RawMaterialListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99148F63015EC0C001975C5 /* RawMaterialListView.swift */; };
 		A99148F83015EFD0001975C5 /* RawMaterialListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A856803014C133000A3692 /* RawMaterialListViewModel.swift */; };
 		A99148FC3015F616001975C5 /* AddMaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99148FB3015F616001975C5 /* AddMaterialView.swift */; };
+		A99149363017C325001975C5 /* PricingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99149353017C325001975C5 /* PricingModels.swift */; };
+		A99149383017C335001975C5 /* PricingCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99149373017C335001975C5 /* PricingCalculator.swift */; };
 		A9A8567030149B3E000A3692 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A8566F30149B3E000A3692 /* Assets.xcassets */; };
 		A9A8567D3014BD01000A3692 /* MaterialUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8567C3014BD01000A3692 /* MaterialUnit.swift */; };
 		A9A8567F3014BD8A000A3692 /* RawMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8567E3014BD8A000A3692 /* RawMaterial.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		A99149413017C4D1001975C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9A8565E30149B3C000A3692 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A9A8566530149B3C000A3692;
+			remoteInfo = RigidBoxQuoter;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		A99148F63015EC0C001975C5 /* RawMaterialListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawMaterialListView.swift; sourceTree = "<group>"; };
 		A99148FB3015F616001975C5 /* AddMaterialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMaterialView.swift; sourceTree = "<group>"; };
+		A99149353017C325001975C5 /* PricingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricingModels.swift; sourceTree = "<group>"; };
+		A99149373017C335001975C5 /* PricingCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricingCalculator.swift; sourceTree = "<group>"; };
+		A991493D3017C4D1001975C5 /* RigidBoxQuoterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RigidBoxQuoterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9A8566630149B3C000A3692 /* RigidBoxQuoter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RigidBoxQuoter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9A8566F30149B3E000A3692 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9A8567C3014BD01000A3692 /* MaterialUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialUnit.swift; sourceTree = "<group>"; };
@@ -26,6 +41,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		A991493E3017C4D1001975C5 /* RigidBoxQuoterTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = RigidBoxQuoterTests;
+			sourceTree = "<group>";
+		};
 		A9A8566830149B3C000A3692 /* RigidBoxQuoter */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = RigidBoxQuoter;
@@ -34,6 +54,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A991493A3017C4D1001975C5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A9A8566330149B3C000A3692 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -53,6 +80,7 @@
 				A9A8567830149CFD000A3692 /* Views */,
 				A9A8567730149CFA000A3692 /* Services */,
 				A9A8567630149CF5000A3692 /* Resources */,
+				A991493E3017C4D1001975C5 /* RigidBoxQuoterTests */,
 				A9A8566730149B3C000A3692 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				A9A8566630149B3C000A3692 /* RigidBoxQuoter.app */,
+				A991493D3017C4D1001975C5 /* RigidBoxQuoterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,6 +105,8 @@
 		A9A8567730149CFA000A3692 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A99149353017C325001975C5 /* PricingModels.swift */,
+				A99149373017C335001975C5 /* PricingCalculator.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -109,6 +140,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A991493C3017C4D1001975C5 /* RigidBoxQuoterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A99149433017C4D1001975C5 /* Build configuration list for PBXNativeTarget "RigidBoxQuoterTests" */;
+			buildPhases = (
+				A99149393017C4D1001975C5 /* Sources */,
+				A991493A3017C4D1001975C5 /* Frameworks */,
+				A991493B3017C4D1001975C5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A99149423017C4D1001975C5 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A991493E3017C4D1001975C5 /* RigidBoxQuoterTests */,
+			);
+			name = RigidBoxQuoterTests;
+			packageProductDependencies = (
+			);
+			productName = RigidBoxQuoterTests;
+			productReference = A991493D3017C4D1001975C5 /* RigidBoxQuoterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		A9A8566530149B3C000A3692 /* RigidBoxQuoter */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A9A8567330149B3E000A3692 /* Build configuration list for PBXNativeTarget "RigidBoxQuoter" */;
@@ -141,6 +195,10 @@
 				LastSwiftUpdateCheck = 2660;
 				LastUpgradeCheck = 2660;
 				TargetAttributes = {
+					A991493C3017C4D1001975C5 = {
+						CreatedOnToolsVersion = 26.6;
+						TestTargetID = A9A8566530149B3C000A3692;
+					};
 					A9A8566530149B3C000A3692 = {
 						CreatedOnToolsVersion = 26.6;
 					};
@@ -161,11 +219,19 @@
 			projectRoot = "";
 			targets = (
 				A9A8566530149B3C000A3692 /* RigidBoxQuoter */,
+				A991493C3017C4D1001975C5 /* RigidBoxQuoterTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A991493B3017C4D1001975C5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A9A8566430149B3C000A3692 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -177,12 +243,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A99149393017C4D1001975C5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A9A8566230149B3C000A3692 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A99149383017C335001975C5 /* PricingCalculator.swift in Sources */,
 				A99148F73015EC0C001975C5 /* RawMaterialListView.swift in Sources */,
 				A99148FC3015F616001975C5 /* AddMaterialView.swift in Sources */,
+				A99149363017C325001975C5 /* PricingModels.swift in Sources */,
 				A9A8567F3014BD8A000A3692 /* RawMaterial.swift in Sources */,
 				A9A8567D3014BD01000A3692 /* MaterialUnit.swift in Sources */,
 				A99148F83015EFD0001975C5 /* RawMaterialListViewModel.swift in Sources */,
@@ -191,7 +266,57 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		A99149423017C4D1001975C5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A9A8566530149B3C000A3692 /* RigidBoxQuoter */;
+			targetProxy = A99149413017C4D1001975C5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		A99149443017C4D1001975C5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 95SV6383TM;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.Bill.Morfonidis.RigidBoxQuoterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RigidBoxQuoter.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RigidBoxQuoter";
+			};
+			name = Debug;
+		};
+		A99149453017C4D1001975C5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 95SV6383TM;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = me.Bill.Morfonidis.RigidBoxQuoterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RigidBoxQuoter.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RigidBoxQuoter";
+			};
+			name = Release;
+		};
 		A9A8567130149B3E000A3692 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -380,6 +505,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A99149433017C4D1001975C5 /* Build configuration list for PBXNativeTarget "RigidBoxQuoterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A99149443017C4D1001975C5 /* Debug */,
+				A99149453017C4D1001975C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A9A8566130149B3C000A3692 /* Build configuration list for PBXProject "RigidBoxQuoter" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
