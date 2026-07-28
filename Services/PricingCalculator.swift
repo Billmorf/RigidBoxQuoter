@@ -17,4 +17,19 @@ enum PricingCalculator {
         
         return (boardBase, boardLid, coveringBase, coveringLid)
     }
+    
+    nonisolated static func piecesPerSheet(piece: (width: Double, length: Double), sheet: (width: Double, length: Double)) -> Int {
+        let pieceWidthwithSheetWidth = floor(sheet.width / piece.width)
+        let pieceLengthwithSheetLength = floor(sheet.length / piece.length)
+        let piecesPerSheet = pieceWidthwithSheetWidth * pieceLengthwithSheetLength
+        
+        let pieceWidthWithSheetLength = floor(sheet.length / piece.width)
+        let pieceLengthWithSheetWidth = floor(sheet.width / piece.length)
+        let piecesPerSheet2 = pieceWidthWithSheetLength * pieceLengthWithSheetWidth
+        
+        let bestPiecesPerSheet = Int(max(piecesPerSheet, piecesPerSheet2))
+        
+        return bestPiecesPerSheet
+        
+    }
 }

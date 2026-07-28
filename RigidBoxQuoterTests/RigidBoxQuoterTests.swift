@@ -18,5 +18,13 @@ struct RigidBoxQuoterTests {
         #expect(result.boardBase.length == 22)
         #expect(result.boardLid.width == 15.5)
     }
+    
+    @Test func testResultsForPiecesPerSheet () async throws {
+        let piece = (width: 20.0, length: 22.0)
+        let sheet = (width: 75.0, length: 105.0)
+        let result = PricingCalculator.piecesPerSheet(piece: piece, sheet: sheet)
+        
+        #expect(result == 15)
+    }
 
 }
