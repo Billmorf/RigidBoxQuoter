@@ -35,5 +35,15 @@ struct RigidBoxQuoterTests {
         
         #expect(result == 7)
     }
+    
+    @Test func testMaterialCost () async throws {
+        let piece = (width: 20.0, length: 22.0)
+        let material = MaterialPricingInput(pricePerUnit: 0.75, sheetWidth: 75, sheetHeight: 105)
+        let quantity = 100
+        
+        let result = PricingCalculator.materialCost(piece: piece, material: material, quantity: quantity)
+        
+        #expect(result == 5.25)
+    }
 
 }

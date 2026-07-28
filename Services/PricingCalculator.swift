@@ -35,6 +35,15 @@ enum PricingCalculator {
     
     nonisolated static func sheetsNeeded(quantity: Int, piecesPerSheet: Int) -> Int {
         let result = Int(ceil(Double(quantity) / Double(piecesPerSheet)))
+        
         return result
+    }
+    
+    nonisolated static func materialCost(piece: (width: Double, length: Double), material: MaterialPricingInput, quantity: Int) -> Double {
+        let pieces = piecesPerSheet(piece: piece, sheet: (width: material.sheetWidth, length: material.sheetHeight))
+        let sheets = sheetsNeeded(quantity: quantity, piecesPerSheet: Int(pieces))
+        let finalPrice = Double(sheets) * material.pricePerUnit
+        
+        return finalPrice
     }
 }
