@@ -26,5 +26,14 @@ struct RigidBoxQuoterTests {
         
         #expect(result == 15)
     }
+    
+    @Test func testSheetsNeeded () async throws {
+        let quantity = 100
+        let piecesPerSheet = 15
+        
+        let result = PricingCalculator.sheetsNeeded(quantity: quantity, piecesPerSheet: piecesPerSheet)
+        
+        #expect(result == 7)
+    }
 
 }

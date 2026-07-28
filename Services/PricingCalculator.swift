@@ -32,4 +32,9 @@ enum PricingCalculator {
         return bestPiecesPerSheet
         
     }
+    
+    nonisolated static func sheetsNeeded(quantity: Int, piecesPerSheet: Int) -> Int {
+        let result = Int(ceil(Double(quantity) / Double(piecesPerSheet)))
+        return result
+    }
 }
