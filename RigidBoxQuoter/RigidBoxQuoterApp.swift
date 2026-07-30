@@ -12,7 +12,9 @@ import SwiftData
 struct RigidBoxQuoterApp: App {
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
-            RawMaterial.self
+            RawMaterial.self,
+            AppSettings.self,
+            BoxTemplate.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

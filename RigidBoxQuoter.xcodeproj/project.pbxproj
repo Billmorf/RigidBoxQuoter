@@ -12,6 +12,8 @@
 		A99148FC3015F616001975C5 /* AddMaterialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99148FB3015F616001975C5 /* AddMaterialView.swift */; };
 		A99149363017C325001975C5 /* PricingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99149353017C325001975C5 /* PricingModels.swift */; };
 		A99149383017C335001975C5 /* PricingCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99149373017C335001975C5 /* PricingCalculator.swift */; };
+		A991494D301BAD4D001975C5 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A991494C301BAD4C001975C5 /* AppSettings.swift */; };
+		A991494F301BAE72001975C5 /* BoxTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A991494E301BAE72001975C5 /* BoxTemplate.swift */; };
 		A9A8567030149B3E000A3692 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A8566F30149B3E000A3692 /* Assets.xcassets */; };
 		A9A8567D3014BD01000A3692 /* MaterialUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8567C3014BD01000A3692 /* MaterialUnit.swift */; };
 		A9A8567F3014BD8A000A3692 /* RawMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8567E3014BD8A000A3692 /* RawMaterial.swift */; };
@@ -33,6 +35,8 @@
 		A99149353017C325001975C5 /* PricingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricingModels.swift; sourceTree = "<group>"; };
 		A99149373017C335001975C5 /* PricingCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricingCalculator.swift; sourceTree = "<group>"; };
 		A991493D3017C4D1001975C5 /* RigidBoxQuoterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RigidBoxQuoterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A991494C301BAD4C001975C5 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		A991494E301BAE72001975C5 /* BoxTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxTemplate.swift; sourceTree = "<group>"; };
 		A9A8566630149B3C000A3692 /* RigidBoxQuoter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RigidBoxQuoter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9A8566F30149B3E000A3692 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9A8567C3014BD01000A3692 /* MaterialUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialUnit.swift; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 			children = (
 				A9A8567C3014BD01000A3692 /* MaterialUnit.swift */,
 				A9A8567E3014BD8A000A3692 /* RawMaterial.swift */,
+				A991494C301BAD4C001975C5 /* AppSettings.swift */,
+				A991494E301BAE72001975C5 /* BoxTemplate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -258,7 +264,9 @@
 				A99148F73015EC0C001975C5 /* RawMaterialListView.swift in Sources */,
 				A99148FC3015F616001975C5 /* AddMaterialView.swift in Sources */,
 				A99149363017C325001975C5 /* PricingModels.swift in Sources */,
+				A991494D301BAD4D001975C5 /* AppSettings.swift in Sources */,
 				A9A8567F3014BD8A000A3692 /* RawMaterial.swift in Sources */,
+				A991494F301BAE72001975C5 /* BoxTemplate.swift in Sources */,
 				A9A8567D3014BD01000A3692 /* MaterialUnit.swift in Sources */,
 				A99148F83015EFD0001975C5 /* RawMaterialListViewModel.swift in Sources */,
 			);
@@ -462,7 +470,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
@@ -494,7 +502,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;

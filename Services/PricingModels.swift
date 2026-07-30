@@ -19,3 +19,22 @@ struct BoxDimensions {
     var baseHeight: Double
     var lidHeight: Double
 }
+
+struct OfferCalculationInput {
+    var box: BoxDimensions
+    var structuralMaterial: MaterialPricingInput
+    var coveringMaterial: MaterialPricingInput
+    var laborMinutes: Double
+    var quantity: Int
+    var hourlyRate: Double
+    var moldCost: Double
+    var marginPercent: Double
+}
+
+struct OfferCalculationResult {
+    var materialCost: Double
+    var laborCost: Double
+    var moldCost: Double
+    var subTotal: Double
+    var total: Double
+}
