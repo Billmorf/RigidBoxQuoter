@@ -18,7 +18,14 @@ struct BoxTemplateListView: View {
                 ForEach(viewModel?.templates ?? []) { template in
                     HStack {
                         Text(template.name)
-                        Text("\(template.baseLength) x \(template.baseWidth) x \(template.baseHeight)")
+                        Text("\(String(format: "%.1f", template.baseLength)) x \(String(format: "%.1f", template.baseWidth)) x \(String(format: "%.1f", template.baseHeight))")
+                    }
+                }
+                .onDelete { indexSet in
+                    for index in indexSet {
+                        if let template = viewModel?.templates[index] {
+                            viewModel?.deleteTemplate(template)
+                        }
                     }
                 }
             }
