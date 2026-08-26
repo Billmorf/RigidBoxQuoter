@@ -15,6 +15,9 @@
 		A991494D301BAD4D001975C5 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A991494C301BAD4C001975C5 /* AppSettings.swift */; };
 		A991494F301BAE72001975C5 /* BoxTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A991494E301BAE72001975C5 /* BoxTemplate.swift */; };
 		A9914951301DE167001975C5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9914950301DE167001975C5 /* SettingsView.swift */; };
+		A99A8405303EFEBE00148605 /* BoxTemplateListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99A8404303EFEBE00148605 /* BoxTemplateListViewModel.swift */; };
+		A99A8407303F01AC00148605 /* BoxTemplateListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99A8406303F01AC00148605 /* BoxTemplateListView.swift */; };
+		A99A8409303F3E3800148605 /* AddBoxTemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99A8408303F3E3800148605 /* AddBoxTemplateView.swift */; };
 		A9A8567030149B3E000A3692 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A9A8566F30149B3E000A3692 /* Assets.xcassets */; };
 		A9A8567D3014BD01000A3692 /* MaterialUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8567C3014BD01000A3692 /* MaterialUnit.swift */; };
 		A9A8567F3014BD8A000A3692 /* RawMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8567E3014BD8A000A3692 /* RawMaterial.swift */; };
@@ -39,6 +42,9 @@
 		A991494C301BAD4C001975C5 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		A991494E301BAE72001975C5 /* BoxTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxTemplate.swift; sourceTree = "<group>"; };
 		A9914950301DE167001975C5 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A99A8404303EFEBE00148605 /* BoxTemplateListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxTemplateListViewModel.swift; sourceTree = "<group>"; };
+		A99A8406303F01AC00148605 /* BoxTemplateListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxTemplateListView.swift; sourceTree = "<group>"; };
+		A99A8408303F3E3800148605 /* AddBoxTemplateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBoxTemplateView.swift; sourceTree = "<group>"; };
 		A9A8566630149B3C000A3692 /* RigidBoxQuoter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RigidBoxQuoter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9A8566F30149B3E000A3692 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A9A8567C3014BD01000A3692 /* MaterialUnit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaterialUnit.swift; sourceTree = "<group>"; };
@@ -121,6 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				A99148F63015EC0C001975C5 /* RawMaterialListView.swift */,
+				A99A8406303F01AC00148605 /* BoxTemplateListView.swift */,
+				A99A8408303F3E3800148605 /* AddBoxTemplateView.swift */,
 				A9914950301DE167001975C5 /* SettingsView.swift */,
 				A99148FB3015F616001975C5 /* AddMaterialView.swift */,
 			);
@@ -131,6 +139,7 @@
 			isa = PBXGroup;
 			children = (
 				A9A856803014C133000A3692 /* RawMaterialListViewModel.swift */,
+				A99A8404303EFEBE00148605 /* BoxTemplateListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -265,10 +274,13 @@
 			files = (
 				A99149383017C335001975C5 /* PricingCalculator.swift in Sources */,
 				A99148F73015EC0C001975C5 /* RawMaterialListView.swift in Sources */,
+				A99A8405303EFEBE00148605 /* BoxTemplateListViewModel.swift in Sources */,
+				A99A8407303F01AC00148605 /* BoxTemplateListView.swift in Sources */,
 				A99148FC3015F616001975C5 /* AddMaterialView.swift in Sources */,
 				A99149363017C325001975C5 /* PricingModels.swift in Sources */,
 				A991494D301BAD4D001975C5 /* AppSettings.swift in Sources */,
 				A9A8567F3014BD8A000A3692 /* RawMaterial.swift in Sources */,
+				A99A8409303F3E3800148605 /* AddBoxTemplateView.swift in Sources */,
 				A991494F301BAE72001975C5 /* BoxTemplate.swift in Sources */,
 				A9A8567D3014BD01000A3692 /* MaterialUnit.swift in Sources */,
 				A99148F83015EFD0001975C5 /* RawMaterialListViewModel.swift in Sources */,
