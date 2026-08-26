@@ -15,6 +15,7 @@ struct RawMaterialListView: View {
     @State private var materialBeingEdited: RawMaterial?
     @State private var editedPriceText: String = ""
     @State private var showingEditAlert: Bool = false
+    @State private var showingSettings: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -51,12 +52,18 @@ struct RawMaterialListView: View {
                 Button("Add material", systemImage: "plus") {
                     showingAddSheet.toggle()
                 }
+                Button("Show Settings", systemImage: "gearshape"){
+                    showingSettings.toggle()
+                }
             }
             .sheet(isPresented: $showingAddSheet) {
                 if let viewModel {
                     AddMaterialView(viewModel: viewModel)
                 }
             }
+            .sheet(isPresented: $showingSettings) {
+                    SettingsView()
+                }
             .alert("Update price", isPresented: $showingEditAlert) {
                 TextField("Price", text: $editedPriceText)
                 Button("Save") {

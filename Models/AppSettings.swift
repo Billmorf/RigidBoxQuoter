@@ -13,7 +13,7 @@ class AppSettings {
     var hourlyRate: Double
     var lastUpdated: Date
     
-    init(hourlyRate: Double, lastUpdated: Date) {
+    init(hourlyRate: Double) {
         self.hourlyRate = hourlyRate
         self.lastUpdated = Date()
     }
