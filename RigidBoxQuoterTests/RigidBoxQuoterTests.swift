@@ -45,5 +45,19 @@ struct RigidBoxQuoterTests {
         
         #expect(result == 5.25)
     }
+    
+    @Test func testCalculateOffer () async throws {
+        let structuralMaterialCost = MaterialPricingInput(pricePerUnit: 0.75, sheetWidth: 75, sheetHeight: 105)
+        let coveringMaterialCost = MaterialPricingInput(pricePerUnit: 0.50, sheetWidth: 70, sheetHeight: 100)
+        let box = BoxDimensions(baseLength: 12, baseWidth: 10, baseHeight: 5, lidHeight: 2.5)
+        let subTotal = OfferCalculationInput(box: box, structuralMaterial: structuralMaterialCost, coveringMaterial: coveringMaterialCost, laborMinutes: 5, quantity: 100, hourlyRate: 12, moldCost: 30, marginPercent: 20)
+        let result = PricingCalculator.calculateOffer(subTotal, usingMold: true)
+        
+        #expect(result.materialCost == 19.00)
+        #expect(result.laborCost == 100.00)
+        #expect(result.moldCost == 30.00)
+        #expect(result.subTotal == 149.00)
+        #expect(abs(result.total - 178.80) < 0.001)
+    }
 
 }

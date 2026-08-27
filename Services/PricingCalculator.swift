@@ -46,4 +46,35 @@ enum PricingCalculator {
         
         return finalPrice
     }
+    
+    nonisolated static func laborCost(minutes: Double, quantity: Int, hourlyRate: Double) -> Double {
+        let result = (minutes * Double(quantity) / 60) * hourlyRate
+        
+        return result
+    }
+    
+    nonisolated static func calculateOffer(_ input: OfferCalculationInput, usingMold: Bool) -> OfferCalculationResult {
+        let dimension = pieceDimensions(for: input.box)
+        let materialCostBoardBase = materialCost(piece: dimension.boardBase, material: input.structuralMaterial, quantity: input.quantity)
+        let materialCostBoardLid = materialCost(piece: dimension.boardLid, material: input.structuralMaterial, quantity: input.quantity)
+        let materialCostCoveringBase = materialCost(piece: dimension.coveringBase, material: input.coveringMaterial, quantity: input.quantity)
+        let materialCostCoveringLid = materialCost(piece: dimension.coveringLid, material: input.coveringMaterial, quantity: input.quantity)
+        let totalMaterialCost = materialCostBoardBase + materialCostBoardLid + materialCostCoveringBase + materialCostCoveringLid
+        let totalLaborCost = laborCost(minutes: input.laborMinutes, quantity: input.quantity, hourlyRate: input.hourlyRate)
+        let moldCost = usingMold ? input.moldCost : 0
+        
+        let subTotal = totalMaterialCost + totalLaborCost + moldCost
+        let total = subTotal * (1 + input.marginPercent/100)
+        
+        return OfferCalculationResult(quantity: input.quantity, materialCost: totalMaterialCost, laborCost: totalLaborCost, moldCost: moldCost, subTotal: subTotal, total: total)
+    }
+}
+
+extension OfferCalculationResult {
+    var profitAmount: Double {
+        total - subTotal
+    }
+    var costPerUnit: Double {
+        total / Double(quantity)
+    }
 }
