@@ -16,6 +16,8 @@ struct RawMaterialListView: View {
     @State private var editedPriceText: String = ""
     @State private var showingEditAlert: Bool = false
     @State private var showingSettings: Bool = false
+    @State private var showingOffer : Bool = false
+    @State private var showingBoxTemplate : Bool = false
     
     var body: some View {
         NavigationStack {
@@ -55,6 +57,12 @@ struct RawMaterialListView: View {
                 Button("Show Settings", systemImage: "gearshape"){
                     showingSettings.toggle()
                 }
+                Button("Offer", systemImage: "gear"){
+                    showingOffer.toggle()
+                }
+                Button("BoxTemplate", systemImage: ""){
+                    showingBoxTemplate.toggle()
+                }
             }
             .sheet(isPresented: $showingAddSheet) {
                 if let viewModel {
@@ -64,6 +72,12 @@ struct RawMaterialListView: View {
             .sheet(isPresented: $showingSettings) {
                     SettingsView()
                 }
+            .sheet(isPresented: $showingOffer) {
+                    CreateOfferView()
+            }
+            .sheet(isPresented: $showingBoxTemplate) {
+                    BoxTemplateListView()
+            }
             .alert("Update price", isPresented: $showingEditAlert) {
                 TextField("Price", text: $editedPriceText)
                 Button("Save") {

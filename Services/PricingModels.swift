@@ -32,6 +32,7 @@ struct OfferCalculationInput {
 }
 
 struct OfferCalculationResult {
+    var quantity: Int
     var materialCost: Double
     var laborCost: Double
     var moldCost: Double

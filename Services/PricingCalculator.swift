@@ -66,6 +66,15 @@ enum PricingCalculator {
         let subTotal = totalMaterialCost + totalLaborCost + moldCost
         let total = subTotal * (1 + input.marginPercent/100)
         
-        return OfferCalculationResult(materialCost: totalMaterialCost, laborCost: totalLaborCost, moldCost: moldCost, subTotal: subTotal, total: total)
+        return OfferCalculationResult(quantity: input.quantity, materialCost: totalMaterialCost, laborCost: totalLaborCost, moldCost: moldCost, subTotal: subTotal, total: total)
+    }
+}
+
+extension OfferCalculationResult {
+    var profitAmount: Double {
+        total - subTotal
+    }
+    var costPerUnit: Double {
+        total / Double(quantity)
     }
 }
