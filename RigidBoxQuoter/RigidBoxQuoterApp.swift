@@ -15,6 +15,7 @@ struct RigidBoxQuoterApp: App {
             RawMaterial.self,
             AppSettings.self,
             BoxTemplate.self,
+            Offer.self,
         ])
         let modelConfiguration = ModelConfiguration(schema: schema, isStoredInMemoryOnly: false)
 

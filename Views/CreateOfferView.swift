@@ -11,7 +11,10 @@ import SwiftData
 struct CreateOfferView: View {
     @Query private var allTemplates: [BoxTemplate]
     @Query private var allSettings: [AppSettings]
+    @Environment(\.modelContext) private var modelContext
+    @Environment(\.dismiss) private var dismiss
     
+    @State private var clientName = ""
     @State private var selectedTemplate: BoxTemplate?
     @State private var quantityText = ""
     @State private var usingMold = false
@@ -39,6 +42,7 @@ struct CreateOfferView: View {
         NavigationStack {
             Form {
                 Section {
+                    TextField("Client name", text: $clientName)
                     Picker("Box Template", selection: $selectedTemplate) {
                         ForEach(allTemplates) { template in
                             Text(template.name).tag(template as BoxTemplate?)
@@ -74,11 +78,19 @@ struct CreateOfferView: View {
                     }
                 }
             }
+            .toolbar {
+                Button("Create Offer") {
+                    guard let result = calculationResult, let template = selectedTemplate else { return }
+                    let offer = Offer(clientName: clientName, boxTemplateName: template.name, quantity: result.quantity, materialCost: result.materialCost, laborCost: result.laborCost, moldCost: result.moldCost, subTotal: result.subTotal, total: result.total, marginPercent: marginPercent)
+                    modelContext.insert(offer)
+                    dismiss()
+                }
+            }
         }
     }
 }
 
 #Preview {
     CreateOfferView()
-        .modelContainer(for: [BoxTemplate.self, RawMaterial.self, AppSettings.self], inMemory: true)
+        .modelContainer(for: [BoxTemplate.self, RawMaterial.self, AppSettings.self, Offer.self], inMemory: true)
 }

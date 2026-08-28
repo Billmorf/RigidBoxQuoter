@@ -22,6 +22,7 @@
 		A9A8567D3014BD01000A3692 /* MaterialUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8567C3014BD01000A3692 /* MaterialUnit.swift */; };
 		A9A8567F3014BD8A000A3692 /* RawMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8567E3014BD8A000A3692 /* RawMaterial.swift */; };
 		A9EEBDCA30404A75008BAB33 /* CreateOfferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EEBDC930404A75008BAB33 /* CreateOfferView.swift */; };
+		A9EEBDD430418D30008BAB33 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EEBDD330418D30008BAB33 /* Offer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		A9A8567E3014BD8A000A3692 /* RawMaterial.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawMaterial.swift; sourceTree = "<group>"; };
 		A9A856803014C133000A3692 /* RawMaterialListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawMaterialListViewModel.swift; sourceTree = "<group>"; };
 		A9EEBDC930404A75008BAB33 /* CreateOfferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOfferView.swift; sourceTree = "<group>"; };
+		A9EEBDD330418D30008BAB33 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -152,6 +154,7 @@
 			children = (
 				A9A8567C3014BD01000A3692 /* MaterialUnit.swift */,
 				A9A8567E3014BD8A000A3692 /* RawMaterial.swift */,
+				A9EEBDD330418D30008BAB33 /* Offer.swift */,
 				A991494C301BAD4C001975C5 /* AppSettings.swift */,
 				A991494E301BAE72001975C5 /* BoxTemplate.swift */,
 			);
@@ -283,6 +286,7 @@
 				A99149363017C325001975C5 /* PricingModels.swift in Sources */,
 				A991494D301BAD4D001975C5 /* AppSettings.swift in Sources */,
 				A9A8567F3014BD8A000A3692 /* RawMaterial.swift in Sources */,
+				A9EEBDD430418D30008BAB33 /* Offer.swift in Sources */,
 				A9EEBDCA30404A75008BAB33 /* CreateOfferView.swift in Sources */,
 				A99A8409303F3E3800148605 /* AddBoxTemplateView.swift in Sources */,
 				A991494F301BAE72001975C5 /* BoxTemplate.swift in Sources */,
