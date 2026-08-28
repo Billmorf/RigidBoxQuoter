@@ -23,6 +23,8 @@
 		A9A8567F3014BD8A000A3692 /* RawMaterial.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A8567E3014BD8A000A3692 /* RawMaterial.swift */; };
 		A9EEBDCA30404A75008BAB33 /* CreateOfferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EEBDC930404A75008BAB33 /* CreateOfferView.swift */; };
 		A9EEBDD430418D30008BAB33 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EEBDD330418D30008BAB33 /* Offer.swift */; };
+		A9EEBDDE30419739008BAB33 /* OfferListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EEBDDD30419739008BAB33 /* OfferListView.swift */; };
+		A9EEBDE030419E90008BAB33 /* OfferDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EEBDDF30419E90008BAB33 /* OfferDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +56,8 @@
 		A9A856803014C133000A3692 /* RawMaterialListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RawMaterialListViewModel.swift; sourceTree = "<group>"; };
 		A9EEBDC930404A75008BAB33 /* CreateOfferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOfferView.swift; sourceTree = "<group>"; };
 		A9EEBDD330418D30008BAB33 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
+		A9EEBDDD30419739008BAB33 /* OfferListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferListView.swift; sourceTree = "<group>"; };
+		A9EEBDDF30419E90008BAB33 /* OfferDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -134,6 +138,8 @@
 				A99A8406303F01AC00148605 /* BoxTemplateListView.swift */,
 				A9EEBDC930404A75008BAB33 /* CreateOfferView.swift */,
 				A99A8408303F3E3800148605 /* AddBoxTemplateView.swift */,
+				A9EEBDDD30419739008BAB33 /* OfferListView.swift */,
+				A9EEBDDF30419E90008BAB33 /* OfferDetailView.swift */,
 				A9914950301DE167001975C5 /* SettingsView.swift */,
 				A99148FB3015F616001975C5 /* AddMaterialView.swift */,
 			);
@@ -278,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9EEBDE030419E90008BAB33 /* OfferDetailView.swift in Sources */,
 				A99149383017C335001975C5 /* PricingCalculator.swift in Sources */,
 				A99148F73015EC0C001975C5 /* RawMaterialListView.swift in Sources */,
 				A99A8405303EFEBE00148605 /* BoxTemplateListViewModel.swift in Sources */,
@@ -289,6 +296,7 @@
 				A9EEBDD430418D30008BAB33 /* Offer.swift in Sources */,
 				A9EEBDCA30404A75008BAB33 /* CreateOfferView.swift in Sources */,
 				A99A8409303F3E3800148605 /* AddBoxTemplateView.swift in Sources */,
+				A9EEBDDE30419739008BAB33 /* OfferListView.swift in Sources */,
 				A991494F301BAE72001975C5 /* BoxTemplate.swift in Sources */,
 				A9A8567D3014BD01000A3692 /* MaterialUnit.swift in Sources */,
 				A99148F83015EFD0001975C5 /* RawMaterialListViewModel.swift in Sources */,

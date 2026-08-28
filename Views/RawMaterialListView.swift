@@ -18,6 +18,7 @@ struct RawMaterialListView: View {
     @State private var showingSettings: Bool = false
     @State private var showingOffer : Bool = false
     @State private var showingBoxTemplate : Bool = false
+    @State private var showingOfferList : Bool = false
     
     var body: some View {
         NavigationStack {
@@ -63,6 +64,9 @@ struct RawMaterialListView: View {
                 Button("BoxTemplate", systemImage: ""){
                     showingBoxTemplate.toggle()
                 }
+                Button("Offer List", systemImage: "global"){
+                    showingOfferList.toggle()
+                }
             }
             .sheet(isPresented: $showingAddSheet) {
                 if let viewModel {
@@ -77,6 +81,9 @@ struct RawMaterialListView: View {
             }
             .sheet(isPresented: $showingBoxTemplate) {
                     BoxTemplateListView()
+            }
+            .sheet(isPresented: $showingOfferList) {
+                OfferListView()
             }
             .alert("Update price", isPresented: $showingEditAlert) {
                 TextField("Price", text: $editedPriceText)

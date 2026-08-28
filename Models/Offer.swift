@@ -34,3 +34,12 @@ class Offer {
         self.marginPercent = marginPercent
     }
 }
+
+extension Offer {
+    var profitAmount: Double {
+        self.total - self.subTotal
+    }
+    var costPerUnit: Double {
+        self.total / Double(self.quantity)
+    }
+}
