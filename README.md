@@ -17,5 +17,5 @@ iOS app for cardboard/rigid box manufacturing workshops, enabling management of 
 - [x] Phase 4: Offer creation UI
 - [x] Phase 5: Offer model + persistence
 - [x] Phase 6: Offer history
-- [ ] Phase 7: PDF export
+- [x] Phase 7: PDF export
 - [ ] Phase 8: Polish & App Icon

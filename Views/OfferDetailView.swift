@@ -8,8 +8,17 @@
 import SwiftUI
 import SwiftData
 
+func presentShareSheet(url: URL) {
+    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+          let rootVC = windowScene.windows.first?.rootViewController else { return }
+    
+    let activityVC = UIActivityViewController(activityItems: [url], applicationActivities: nil)
+    rootVC.present(activityVC, animated: true)
+}
+
 struct OfferDetailView: View {
     let offer: Offer
+    @State private var showingPrintView = false
     
     var body: some View {
         NavigationStack{
@@ -32,6 +41,19 @@ struct OfferDetailView: View {
                 }
             }
             .navigationTitle(offer.clientName)
+            .toolbar {
+                Button("Preview"){
+                    showingPrintView.toggle()
+                }
+                Button("Share PDF"){
+                    if let url = PDFGenerator.generate(for: offer) {
+                        presentShareSheet(url: url)
+                    }
+                }
+            }
+            .sheet(isPresented: $showingPrintView){
+                OfferPrintableView(offer: offer)
+            }
         }
     }
 }
