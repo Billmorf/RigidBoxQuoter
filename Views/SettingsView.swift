@@ -13,6 +13,7 @@ struct SettingsView: View {
     @Environment(\.dismiss) private var dismiss
     @Query private var allSettings: [AppSettings]
     @State private var hourlyRateText: String = ""
+    @State private var errorMessage: String?
     
     var body: some View {
         NavigationStack {
@@ -27,7 +28,10 @@ struct SettingsView: View {
             }
             .toolbar {
                 Button("Save") {
-                    guard let newRate = Double(hourlyRateText) else { return }
+                    guard let newRate = Double(hourlyRateText), newRate > 0 else {
+                        errorMessage = "Please enter a valid hourly rate."
+                        return
+                    }
                     if let settings = allSettings.first {
                         settings.hourlyRate = newRate
                     } else {
@@ -36,6 +40,14 @@ struct SettingsView: View {
                     }
                     dismiss()
                 }
+            }
+            .alert("Invalid Input",isPresented: Binding(
+                get: { errorMessage != nil},
+                set: { _ in errorMessage = nil}
+            )) {
+                Button("OK", role: .cancel){}
+            } message: {
+                Text(errorMessage ?? "")
             }
         }
     }

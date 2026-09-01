@@ -21,6 +21,7 @@ struct AddBoxTemplateView: View {
     @State private var baseHeight = ""
     @State private var lidHeight = ""
     @State private var laborMinutes = ""
+    @State private var errorMessage: String?
     
     var body: some View {
         NavigationStack {
@@ -63,18 +64,35 @@ struct AddBoxTemplateView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Add") {
-                        guard let bLength = Double(baseLength),
-                              let bWidth = Double(baseWidth),
-                              let bHeight = Double(baseHeight),
-                              let lHeight = Double(lidHeight),
-                              let labor = Double(laborMinutes),
-                              let structural = selectedStructuralMaterial,
-                              let covering = selectedCoveringMaterial else { return }
+                        guard !name.isEmpty else {
+                            errorMessage = "Please enter a name"
+                            return
+                        }
+                        guard let bLength = Double(baseLength),let bWidth = Double(baseWidth),let bHeight = Double(baseHeight),let lHeight = Double(lidHeight), bLength > 0, bWidth > 0, bHeight > 0, lHeight > 0 && lHeight <= bHeight else {
+                            errorMessage = "Please enter valid dimensions"
+                            return
+                        }
+                        guard let labor = Double(laborMinutes), labor > 0 else {
+                            errorMessage = "Please enter valid labor time"
+                            return
+                        }
+                        guard let structural = selectedStructuralMaterial,let covering = selectedCoveringMaterial else {
+                            errorMessage = "Please select a material"
+                            return
+                        }
                         
                         viewModel.addTemplate(name: name,baseLength: bLength,baseWidth: bWidth,baseHeight: bHeight,lidHeight: lHeight,laborMinutes: labor,structuralMaterial: structural,coveringMaterial: covering)
                         dismiss()
                     }
                 }
+            }
+            .alert("Invalid Input", isPresented: Binding(
+                get: {errorMessage != nil},
+                set: { _ in errorMessage = nil}
+            )) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text(errorMessage ?? "")
             }
         }
     }
