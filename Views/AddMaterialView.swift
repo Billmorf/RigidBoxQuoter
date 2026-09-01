@@ -17,6 +17,7 @@ struct AddMaterialView: View {
     @State private var price = ""
     @State private var sheetWidth = ""
     @State private var sheetHeight = ""
+    @State private var errorMessage: String?
     
     var body: some View {
         NavigationStack {
@@ -50,9 +51,20 @@ struct AddMaterialView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("Add") {
-                        guard let newPrice = Double(price) else { return }
+                        guard !name.isEmpty else {
+                            errorMessage = "Please enter a material name."
+                            return
+                        }
+                        guard let newPrice = Double(price), newPrice > 0 else {
+                            errorMessage = "Please enter a valid price."
+                            return
+                        }
                         if materialSelected == .sheet {
-                            if let shWidth = Double(sheetWidth), let shHeight = Double(sheetHeight) {
+                            if materialSelected == .sheet {
+                                guard let shWidth = Double(sheetWidth), let shHeight = Double(sheetHeight), shWidth > 0, shHeight > 0 else {
+                                    errorMessage = "Please enter valid dimensions."
+                                    return
+                                }
                                 viewModel.addMaterial(name: name, unit: materialSelected, pricePerUnit: newPrice, sheetWidth: shWidth, sheetHeight: shHeight)
                                 dismiss()
                             }
@@ -62,6 +74,14 @@ struct AddMaterialView: View {
                         }
                     }
                 }
+            }
+            .alert("Invalid Input", isPresented: Binding(
+                get: {errorMessage != nil},
+                set: { _ in errorMessage = nil}
+            )) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text(errorMessage ?? "")
             }
         }
     }

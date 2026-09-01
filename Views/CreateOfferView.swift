@@ -20,6 +20,7 @@ struct CreateOfferView: View {
     @State private var usingMold = false
     @State private var moldCostText = ""
     @State private var marginPercent = 20.0
+    @State private var errorMessage: String?
     
     var calculationResult: OfferCalculationResult? {
         guard let template = selectedTemplate,
@@ -80,11 +81,37 @@ struct CreateOfferView: View {
             }
             .toolbar {
                 Button("Create Offer") {
-                    guard let result = calculationResult, let template = selectedTemplate else { return }
+                    guard let template = selectedTemplate else {
+                        errorMessage = "Please select a template"
+                        return
+                    }
+                    guard let quantity = Int(quantityText), quantity > 0 else {
+                        errorMessage = "Please enter a valid quantity"
+                        return
+                    }
+                    if usingMold == true {
+                        guard let moldCost = Double(moldCostText), moldCost >= 0 else {
+                            errorMessage = "Please enter a valid mold cost"
+                            return
+                        }
+                    }
+                    guard !clientName.isEmpty else {
+                        errorMessage = "Please enter a client name"
+                        return
+                    }
+                    guard let result = calculationResult else { return }
                     let offer = Offer(clientName: clientName, boxTemplateName: template.name, quantity: result.quantity, materialCost: result.materialCost, laborCost: result.laborCost, moldCost: result.moldCost, subTotal: result.subTotal, total: result.total, marginPercent: marginPercent)
                     modelContext.insert(offer)
                     dismiss()
                 }
+            }
+            .alert("Invalid Input", isPresented: Binding(
+                get: {errorMessage != nil},
+                set: { _ in errorMessage = nil}
+            )) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text(errorMessage ?? "")
             }
         }
     }
