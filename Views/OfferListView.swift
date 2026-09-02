@@ -40,4 +40,5 @@ struct OfferListView: View {
 
 #Preview {
     OfferListView()
+        .modelContainer(for: Offer.self, inMemory: true)
 }

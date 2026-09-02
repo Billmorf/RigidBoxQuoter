@@ -69,13 +69,34 @@ struct CreateOfferView: View {
                 
                 if let result = calculationResult {
                     Section {
-                        Text("Materials costs \(String(format: "%.1f", result.materialCost ))")
-                        Text("Labor costs \(String(format: "%.1f", result.laborCost ))")
-                        Text("Mold costs \(String(format: "%.1f", result.moldCost ))")
-                        Text("Subtotal is \(String(format: "%.1f", result.subTotal ))")
-                        Text("Total is \(String(format: "%.1f", result.total ))")
-                        Text("Profit: \(String(format: "%.1f", result.profitAmount))")
-                        Text("Cost per unit: \(String(format: "%.1f", result.costPerUnit))")
+                        HStack {
+                            Text("Materials costs ")
+                            Text(result.materialCost, format: .currency(code: "EUR"))
+                        }
+                        HStack {
+                            Text("Labor costs ")
+                            Text(result.laborCost, format: .currency(code: "EUR"))
+                        }
+                        HStack {
+                            Text("Mold costs ")
+                            Text(result.moldCost, format: .currency(code: "EUR"))
+                        }
+                        HStack {
+                            Text("Subtotal is ")
+                            Text(result.subTotal, format: .currency(code: "EUR"))
+                        }
+                        HStack {
+                            Text("Total is ")
+                            Text(result.total, format: .currency(code: "EUR"))
+                        }
+                        HStack {
+                            Text("Profit: ")
+                            Text(result.profitAmount, format: .currency(code: "EUR"))
+                        }
+                        HStack {
+                            Text("Cost per unit: ")
+                            Text(result.costPerUnit, format: .currency(code: "EUR"))
+                        }
                     }
                 }
             }

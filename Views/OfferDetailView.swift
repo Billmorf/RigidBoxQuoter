@@ -31,13 +31,34 @@ struct OfferDetailView: View {
                     Text("Quantity: \(offer.quantity)")
                 }
                 Section("Cost Breakdown"){
-                    Text("Materials costs \(String(format: "%.1f", offer.materialCost ))")
-                    Text("Labor costs \(String(format: "%.1f", offer.laborCost ))")
-                    Text("Mold costs \(String(format: "%.1f", offer.moldCost ))")
-                    Text("Subtotal is \(String(format: "%.1f", offer.subTotal ))")
-                    Text("Total is \(String(format: "%.1f", offer.total ))")
-                    Text("Profit: \(String(format: "%.1f", offer.profitAmount))")
-                    Text("Cost per unit: \(String(format: "%.1f", offer.costPerUnit))")
+                    HStack {
+                        Text("Materials costs ")
+                        Text(offer.materialCost, format: .currency(code: "EUR"))
+                    }
+                    HStack {
+                        Text("Labor costs ")
+                        Text(offer.laborCost, format: .currency(code: "EUR"))
+                    }
+                    HStack {
+                        Text("Mold costs ")
+                        Text(offer.moldCost, format: .currency(code: "EUR"))
+                    }
+                    HStack {
+                        Text("Subtotal is ")
+                        Text(offer.subTotal, format: .currency(code: "EUR"))
+                    }
+                    HStack {
+                        Text("Total is ")
+                        Text(offer.total, format: .currency(code: "EUR"))
+                    }
+                    HStack {
+                        Text("Profit: ")
+                        Text(offer.profitAmount, format: .currency(code: "EUR"))
+                    }
+                    HStack {
+                        Text("Cost per unit: ")
+                        Text(offer.costPerUnit, format: .currency(code: "EUR"))
+                    }
                 }
             }
             .navigationTitle(offer.clientName)
