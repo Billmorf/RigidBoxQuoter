@@ -68,6 +68,16 @@
 		A9EEBDFF3044272A008BAB33 /* OfferPrintableContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfferPrintableContent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		A9D6BA73304B3DD000E6D020 /* Exceptions for "RigidBoxQuoter" folder in "RigidBoxQuoter" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = A9A8566530149B3C000A3692 /* RigidBoxQuoter */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		A991493E3017C4D1001975C5 /* RigidBoxQuoterTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
@@ -76,6 +86,9 @@
 		};
 		A9A8566830149B3C000A3692 /* RigidBoxQuoter */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				A9D6BA73304B3DD000E6D020 /* Exceptions for "RigidBoxQuoter" folder in "RigidBoxQuoter" target */,
+			);
 			path = RigidBoxQuoter;
 			sourceTree = "<group>";
 		};
@@ -504,9 +517,10 @@
 				DEVELOPMENT_TEAM = 95SV6383TM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RigidBoxQuoter/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -536,9 +550,10 @@
 				DEVELOPMENT_TEAM = 95SV6383TM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = RigidBoxQuoter/Info.plist;
+				INFOPLIST_KEY_LSApplicationCategoryType = "";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
