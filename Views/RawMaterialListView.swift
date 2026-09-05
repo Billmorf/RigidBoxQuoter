@@ -18,26 +18,32 @@ struct RawMaterialListView: View {
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(viewModel?.materials ?? []) { material in
-                    HStack{
-                        Text(material.name)
-                        Text(material.unit.rawValue)
-                        Text(material.pricePerUnit, format: .currency(code: "EUR"))
-                        Spacer()
-                        Image(systemName: "pencil")
-                            .foregroundStyle(.secondary)
-                    }
-                    .onTapGesture {
-                        materialBeingEdited = material
-                        editedPriceText = String(material.pricePerUnit)
-                        showingEditAlert = true
-                    }
-                }
-                .onDelete { indexSet in
-                    for index in indexSet {
-                        if let material = viewModel?.materials[index] {
-                            viewModel?.deleteMaterial(material)
+            Group {
+                if viewModel?.materials.isEmpty ?? true {
+                    ContentUnavailableView("No Materials Yet", systemImage: "shippingbox.fill", description: Text("Create your first material by tapping the plus button"))
+                } else {
+                    List {
+                        ForEach(viewModel?.materials ?? []) { material in
+                            HStack{
+                                Text(material.name)
+                                Text(material.unit.rawValue)
+                                Text(material.pricePerUnit, format: .currency(code: "EUR"))
+                                Spacer()
+                                Image(systemName: "pencil")
+                                    .foregroundStyle(.secondary)
+                            }
+                            .onTapGesture {
+                                materialBeingEdited = material
+                                editedPriceText = String(material.pricePerUnit)
+                                showingEditAlert = true
+                            }
+                        }
+                        .onDelete { indexSet in
+                            for index in indexSet {
+                                if let material = viewModel?.materials[index] {
+                                    viewModel?.deleteMaterial(material)
+                                }
+                            }
                         }
                     }
                 }

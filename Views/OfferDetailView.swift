@@ -31,34 +31,13 @@ struct OfferDetailView: View {
                     Text("Quantity: \(offer.quantity)")
                 }
                 Section("Cost Breakdown"){
-                    HStack {
-                        Text("Materials costs ")
-                        Text(offer.materialCost, format: .currency(code: "EUR"))
-                    }
-                    HStack {
-                        Text("Labor costs ")
-                        Text(offer.laborCost, format: .currency(code: "EUR"))
-                    }
-                    HStack {
-                        Text("Mold costs ")
-                        Text(offer.moldCost, format: .currency(code: "EUR"))
-                    }
-                    HStack {
-                        Text("Subtotal is ")
-                        Text(offer.subTotal, format: .currency(code: "EUR"))
-                    }
-                    HStack {
-                        Text("Total is ")
-                        Text(offer.total, format: .currency(code: "EUR"))
-                    }
-                    HStack {
-                        Text("Profit: ")
-                        Text(offer.profitAmount, format: .currency(code: "EUR"))
-                    }
-                    HStack {
-                        Text("Cost per unit: ")
-                        Text(offer.costPerUnit, format: .currency(code: "EUR"))
-                    }
+                    LabeledContent("Materials:", value: offer.materialCost, format: .currency(code: "EUR"))
+                    LabeledContent("Labor:", value: offer.laborCost, format: .currency(code: "EUR"))
+                    LabeledContent("Molds:", value: offer.moldCost, format: .currency(code: "EUR"))
+                    LabeledContent("Subtotal:", value: offer.subTotal, format: .currency(code: "EUR"))
+                    LabeledContent("Total:", value: offer.total, format: .currency(code: "EUR"))
+                    LabeledContent("Profit:", value: offer.profitAmount, format: .currency(code: "EUR"))
+                    LabeledContent("Cost per unit:", value: offer.costPerUnit, format: .currency(code: "EUR"))
                 }
             }
             .navigationTitle(offer.clientName)

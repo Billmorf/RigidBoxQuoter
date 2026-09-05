@@ -21,19 +21,23 @@ struct OfferListView: View {
     }
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(filteredOffers) { offer in
-                    NavigationLink(destination: OfferDetailView(offer: offer)) {
-                        VStack {
-                            Text("Client: \(offer.clientName)")
-                            Text("Date: \(offer.date.formatted(date: .abbreviated, time: .omitted))")
-                            Text("\(offer.boxTemplateName) - \(offer.quantity)")
-                            Text(offer.total, format: .currency(code: "EUR"))
+            if allOffers.isEmpty {
+                ContentUnavailableView("No Offers Yet", systemImage: "doc.text", description: Text("Create your first offer to see it here"))
+            } else {
+                List {
+                    ForEach(filteredOffers) { offer in
+                        NavigationLink(destination: OfferDetailView(offer: offer)) {
+                            VStack {
+                                LabeledContent("Client:", value: offer.clientName)
+                                LabeledContent("Date:", value: offer.date.formatted(date: .abbreviated, time: .omitted))
+                                LabeledContent("Box:", value: offer.boxTemplateName)
+                                LabeledContent("Total:", value: offer.total, format: .currency(code: "EUR"))
+                            }
                         }
                     }
                 }
+                .searchable(text: $searchText, prompt: "Search by client")
             }
-            .searchable(text: $searchText, prompt: "Search by client")
         }
     }
 }

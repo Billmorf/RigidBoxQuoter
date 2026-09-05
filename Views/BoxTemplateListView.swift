@@ -14,17 +14,23 @@ struct BoxTemplateListView: View {
     @State private var showingAddSheet: Bool = false
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(viewModel?.templates ?? []) { template in
-                    HStack {
-                        Text(template.name)
-                        Text("\(String(format: "%.1f", template.baseLength)) x \(String(format: "%.1f", template.baseWidth)) x \(String(format: "%.1f", template.baseHeight))")
-                    }
-                }
-                .onDelete { indexSet in
-                    for index in indexSet {
-                        if let template = viewModel?.templates[index] {
-                            viewModel?.deleteTemplate(template)
+            Group {
+                if viewModel?.templates.isEmpty == true {
+                    ContentUnavailableView("No Templates Yet", systemImage: "box.fill", description: Text("Add a template to get started"))
+                } else {
+                    List {
+                        ForEach(viewModel?.templates ?? []) { template in
+                            HStack {
+                                Text(template.name)
+                                Text("\(String(format: "%.1f", template.baseLength)) x \(String(format: "%.1f", template.baseWidth)) x \(String(format: "%.1f", template.baseHeight))")
+                            }
+                        }
+                        .onDelete { indexSet in
+                            for index in indexSet {
+                                if let template = viewModel?.templates[index] {
+                                    viewModel?.deleteTemplate(template)
+                                }
+                            }
                         }
                     }
                 }

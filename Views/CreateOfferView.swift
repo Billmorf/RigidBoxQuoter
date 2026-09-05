@@ -69,34 +69,13 @@ struct CreateOfferView: View {
                 
                 if let result = calculationResult {
                     Section {
-                        HStack {
-                            Text("Materials costs ")
-                            Text(result.materialCost, format: .currency(code: "EUR"))
-                        }
-                        HStack {
-                            Text("Labor costs ")
-                            Text(result.laborCost, format: .currency(code: "EUR"))
-                        }
-                        HStack {
-                            Text("Mold costs ")
-                            Text(result.moldCost, format: .currency(code: "EUR"))
-                        }
-                        HStack {
-                            Text("Subtotal is ")
-                            Text(result.subTotal, format: .currency(code: "EUR"))
-                        }
-                        HStack {
-                            Text("Total is ")
-                            Text(result.total, format: .currency(code: "EUR"))
-                        }
-                        HStack {
-                            Text("Profit: ")
-                            Text(result.profitAmount, format: .currency(code: "EUR"))
-                        }
-                        HStack {
-                            Text("Cost per unit: ")
-                            Text(result.costPerUnit, format: .currency(code: "EUR"))
-                        }
+                        LabeledContent("Materials:", value: result.materialCost, format: .currency(code: "EUR"))
+                        LabeledContent("Labor:", value: result.laborCost, format: .currency(code: "EUR"))
+                        LabeledContent("Molds:", value: result.moldCost, format: .currency(code: "EUR"))
+                        LabeledContent("Subtotal:", value: result.subTotal, format: .currency(code: "EUR"))
+                        LabeledContent("Total:", value: result.total, format: .currency(code: "EUR"))
+                        LabeledContent("Profit:", value: result.profitAmount, format: .currency(code: "EUR"))
+                        LabeledContent("Cost per unit:", value: result.costPerUnit, format: .currency(code: "EUR"))
                     }
                 }
             }
