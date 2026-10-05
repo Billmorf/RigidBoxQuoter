@@ -9,12 +9,14 @@ import SwiftUI
 import SwiftData
 
 struct RawMaterialListView: View {
+    @Query private var allTemplates : [BoxTemplate]
     @Environment(\.modelContext) private var modelContext
     @State private var viewModel: RawMaterialListViewModel?
     @State private var showingAddSheet: Bool = false
     @State private var materialBeingEdited: RawMaterial?
     @State private var editedPriceText: String = ""
     @State private var showingEditAlert: Bool = false
+    @State private var errorMessage : String?
     
     var body: some View {
         NavigationStack {
@@ -41,6 +43,11 @@ struct RawMaterialListView: View {
                         .onDelete { indexSet in
                             for index in indexSet {
                                 if let material = viewModel?.materials[index] {
+                                    let isUsed = allTemplates.contains { $0.structuralMaterial == material || $0.coveringMaterial == material }
+                                    if isUsed {
+                                        errorMessage = "Material is used by template box"
+                                        continue
+                                    }
                                     viewModel?.deleteMaterial(material)
                                 }
                             }
@@ -72,11 +79,19 @@ struct RawMaterialListView: View {
                 }
                 Button("Cancel",role: .cancel, action: {})
             }
+            .alert("Can't Delete", isPresented: Binding(
+                get: {errorMessage != nil},
+                set: { _ in errorMessage = nil}
+            )) {
+                Button("OK", role: .cancel) {}
+            } message: {
+                Text(errorMessage ?? "")
+            }
         }
     }
 }
 
 #Preview {
     RawMaterialListView()
-        .modelContainer(for: RawMaterial.self, inMemory: true)
+        .modelContainer(for: [RawMaterial.self, BoxTemplate.self], inMemory: true)
 }
