@@ -30,6 +30,7 @@ struct RawMaterialListView: View {
                                 Text(material.name)
                                 Text(material.unit.rawValue)
                                 Text(material.pricePerUnit, format: .currency(code: "EUR"))
+                                    .monospacedDigit()
                                 Spacer()
                                 Image(systemName: "pencil")
                                     .foregroundStyle(.secondary)

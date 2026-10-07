@@ -70,12 +70,19 @@ struct CreateOfferView: View {
                 if let result = calculationResult {
                     Section {
                         LabeledContent("Materials:", value: result.materialCost, format: .currency(code: "EUR"))
+                            .monospacedDigit()
                         LabeledContent("Labor:", value: result.laborCost, format: .currency(code: "EUR"))
+                            .monospacedDigit()
                         LabeledContent("Molds:", value: result.moldCost, format: .currency(code: "EUR"))
+                            .monospacedDigit()
                         LabeledContent("Subtotal:", value: result.subTotal, format: .currency(code: "EUR"))
+                            .monospacedDigit()
                         LabeledContent("Total:", value: result.total, format: .currency(code: "EUR"))
+                            .monospacedDigit()
                         LabeledContent("Profit:", value: result.profitAmount, format: .currency(code: "EUR"))
+                            .monospacedDigit()
                         LabeledContent("Cost per unit:", value: result.costPerUnit, format: .currency(code: "EUR"))
+                            .monospacedDigit()
                     }
                 }
             }

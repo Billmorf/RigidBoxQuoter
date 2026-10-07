@@ -23,6 +23,21 @@ struct OfferDetailView: View {
     var body: some View {
         NavigationStack{
             List {
+                Section {
+                    VStack(spacing: 6) {
+                        Text("PRICE PER BOX")
+                            .font(.system(.caption, design: .monospaced))
+                            .tracking(1.5)
+                            .foregroundStyle(.secondary)
+                        Text(offer.costPerUnit, format: .currency(code: "EUR"))
+                            .font(.system(size: 56, weight: .bold, design: .monospaced))
+                            .foregroundStyle(Color.accentColor)
+                            .minimumScaleFactor(0.5)
+                            .lineLimit(1)
+                    }
+                    .frame(maxWidth: .infinity)
+                    .listRowBackground(Color.clear)
+                }
                 Section("Client") {
                     Text(offer.clientName)
                 }
@@ -32,12 +47,22 @@ struct OfferDetailView: View {
                 }
                 Section("Cost Breakdown"){
                     LabeledContent("Materials:", value: offer.materialCost, format: .currency(code: "EUR"))
+                        .font(.system(.body, design: .monospaced))
                     LabeledContent("Labor:", value: offer.laborCost, format: .currency(code: "EUR"))
+                        .font(.system(.body, design: .monospaced))
                     LabeledContent("Molds:", value: offer.moldCost, format: .currency(code: "EUR"))
+                        .font(.system(.body, design: .monospaced))
                     LabeledContent("Subtotal:", value: offer.subTotal, format: .currency(code: "EUR"))
-                    LabeledContent("Total:", value: offer.total, format: .currency(code: "EUR"))
+                        .font(.system(.body, design: .monospaced))
+                    LabeledContent {
+                        Text(offer.total, format: .currency(code: "EUR"))
+                            .font(.system(.title3, design: .monospaced, weight: .bold))
+                    } label: {
+                        Text("Total")
+                            .font(.headline)
+                    }
                     LabeledContent("Profit:", value: offer.profitAmount, format: .currency(code: "EUR"))
-                    LabeledContent("Cost per unit:", value: offer.costPerUnit, format: .currency(code: "EUR"))
+                        .font(.system(.body, design: .monospaced))
                 }
             }
             .navigationTitle(offer.clientName)

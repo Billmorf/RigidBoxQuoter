@@ -32,6 +32,7 @@ struct OfferListView: View {
                                 LabeledContent("Date:", value: offer.date.formatted(date: .abbreviated, time: .omitted))
                                 LabeledContent("Box:", value: offer.boxTemplateName)
                                 LabeledContent("Total:", value: offer.total, format: .currency(code: "EUR"))
+                                    .monospacedDigit()
                             }
                         }
                     }
