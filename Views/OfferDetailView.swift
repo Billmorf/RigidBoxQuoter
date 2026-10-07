@@ -38,14 +38,22 @@ struct OfferDetailView: View {
                     .frame(maxWidth: .infinity)
                     .listRowBackground(Color.clear)
                 }
-                Section("Client") {
+                Section{
                     Text(offer.clientName)
+                } header: {
+                    Text("CLIENT")
+                        .font(.system(.caption, design: .monospaced))
+                        .tracking(1)
                 }
-                Section("Box") {
-                    Text(offer.boxTemplateName)
-                    Text("Quantity: \(offer.quantity)")
+                Section{
+                    LabeledContent("Template", value: offer.boxTemplateName)
+                    LabeledContent("Quantity", value: "\(offer.quantity)")
+                } header: {
+                    Text("BOX")
+                        .font(.system(.caption, design: .monospaced))
+                        .tracking(1)
                 }
-                Section("Cost Breakdown"){
+                Section{
                     LabeledContent("Materials:", value: offer.materialCost, format: .currency(code: "EUR"))
                         .font(.system(.body, design: .monospaced))
                     LabeledContent("Labor:", value: offer.laborCost, format: .currency(code: "EUR"))
@@ -63,6 +71,10 @@ struct OfferDetailView: View {
                     }
                     LabeledContent("Profit:", value: offer.profitAmount, format: .currency(code: "EUR"))
                         .font(.system(.body, design: .monospaced))
+                } header: {
+                    Text("COST BREAKDOWN")
+                        .font(.system(.caption, design: .monospaced))
+                        .tracking(1)
                 }
             }
             .navigationTitle(offer.clientName)

@@ -88,13 +88,13 @@ struct CreateOfferView: View {
                     }
                     Section {
                         LabeledContent("Materials:", value: result.materialCost, format: .currency(code: "EUR"))
-                            .monospacedDigit()
+                            .font(.system(.body, design: .monospaced))
                         LabeledContent("Labor:", value: result.laborCost, format: .currency(code: "EUR"))
-                            .monospacedDigit()
+                            .font(.system(.body, design: .monospaced))
                         LabeledContent("Molds:", value: result.moldCost, format: .currency(code: "EUR"))
-                            .monospacedDigit()
+                            .font(.system(.body, design: .monospaced))
                         LabeledContent("Subtotal:", value: result.subTotal, format: .currency(code: "EUR"))
-                            .monospacedDigit()
+                            .font(.system(.body, design: .monospaced))
                         LabeledContent {
                             Text(result.total, format: .currency(code: "EUR"))
                                 .font(.system(.title3, design: .monospaced, weight: .bold))
@@ -103,7 +103,7 @@ struct CreateOfferView: View {
                                 .font(.headline)
                         }
                         LabeledContent("Profit:", value: result.profitAmount, format: .currency(code: "EUR"))
-                            .monospacedDigit()
+                            .font(.system(.body, design: .monospaced))
                     }
                 }
             }
