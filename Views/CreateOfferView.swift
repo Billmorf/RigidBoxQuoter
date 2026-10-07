@@ -69,6 +69,24 @@ struct CreateOfferView: View {
                 
                 if let result = calculationResult {
                     Section {
+                        VStack(spacing: 6) {
+                            Text("PRICE PER BOX")
+                                .font(.system(.caption, design: .monospaced))
+                                .tracking(1.5)
+                                .foregroundStyle(.secondary)
+                            Text(result.costPerUnit, format: .currency(code: "EUR"))
+                                .font(.system(size: 56, weight: .bold, design: .monospaced))
+                                .foregroundStyle(Color.accentColor)
+                                .minimumScaleFactor(0.5)
+                                .lineLimit(1)
+                            Text("\(result.quantity) boxes")
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .listRowBackground(Color.clear)
+                    }
+                    Section {
                         LabeledContent("Materials:", value: result.materialCost, format: .currency(code: "EUR"))
                             .monospacedDigit()
                         LabeledContent("Labor:", value: result.laborCost, format: .currency(code: "EUR"))
@@ -77,11 +95,14 @@ struct CreateOfferView: View {
                             .monospacedDigit()
                         LabeledContent("Subtotal:", value: result.subTotal, format: .currency(code: "EUR"))
                             .monospacedDigit()
-                        LabeledContent("Total:", value: result.total, format: .currency(code: "EUR"))
-                            .monospacedDigit()
+                        LabeledContent {
+                            Text(result.total, format: .currency(code: "EUR"))
+                                .font(.system(.title3, design: .monospaced, weight: .bold))
+                        } label: {
+                            Text("Total")
+                                .font(.headline)
+                        }
                         LabeledContent("Profit:", value: result.profitAmount, format: .currency(code: "EUR"))
-                            .monospacedDigit()
-                        LabeledContent("Cost per unit:", value: result.costPerUnit, format: .currency(code: "EUR"))
                             .monospacedDigit()
                     }
                 }
