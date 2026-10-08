@@ -12,18 +12,18 @@ struct OfferPrintableContent: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-                    Text("Offer")
-                        .font(.largeTitle)
-                    Text("Client: \(offer.clientName)")
-                    Text("Box: \(offer.boxTemplateName)")
-                    Text("Quantity: \(offer.quantity)")
-                    Text("Date: \(offer.date.formatted(date: .long, time: .omitted))")
-                    Divider()
-                    Text("Total: \(offer.total, format: .currency(code: "EUR"))")
-                        .font(.title)
-                        .bold()
-                }
-                .padding(40)
+            Text("Offer")
+                .font(.largeTitle)
+            Text("Client: \(offer.clientName)")
+            Text("Box: \(offer.boxTemplateName)")
+            Text("Quantity: \(offer.quantity)")
+            Text("Date: \(offer.date.formatted(date: .long, time: .omitted))")
+            Divider()
+            Text("Total: \(offer.total, format: .currency(code: "EUR"))")
+                .font(.title)
+                .bold()
+        }
+        .padding(40)
     }
 }
 

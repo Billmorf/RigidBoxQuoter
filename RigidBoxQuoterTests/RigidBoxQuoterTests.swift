@@ -59,5 +59,12 @@ struct RigidBoxQuoterTests {
         #expect(result.subTotal == 149.00)
         #expect(abs(result.total - 178.80) < 0.001)
     }
+    
+    @Test func testAsDouble () async throws {
+        #expect("0,75".asDouble == 0.75)
+        #expect("0.75".asDouble == 0.75)
+        #expect("105,5".asDouble == 105.5)
+        #expect("abc".asDouble == nil)
+    }
 
 }

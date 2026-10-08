@@ -29,12 +29,12 @@ struct CreateOfferView: View {
               let structuralHeight = template.structuralMaterial.sheetHeight,
               let coveringWidth = template.coveringMaterial.sheetWidth,
               let coveringHeight = template.coveringMaterial.sheetHeight
-        else { return nil }
+                else { return nil }
         
         let boxDimensions = BoxDimensions(baseLength: template.baseLength, baseWidth: template.baseWidth, baseHeight: template.baseHeight, lidHeight: template.lidHeight)
         let structuralPricing = MaterialPricingInput(pricePerUnit: template.structuralMaterial.pricePerUnit, sheetWidth: structuralWidth, sheetHeight: structuralHeight)
         let coveringPricing = MaterialPricingInput(pricePerUnit: template.coveringMaterial.pricePerUnit, sheetWidth: coveringWidth, sheetHeight: coveringHeight)
-        let moldCost = usingMold ? Double(moldCostText) ?? 0 : 0
+        let moldCost = usingMold ? moldCostText.asDouble ?? 0 : 0
         let input = OfferCalculationInput(box: boxDimensions, structuralMaterial: structuralPricing, coveringMaterial: coveringPricing, laborMinutes: template.laborMinutes, quantity: quantity, hourlyRate: allSettings.first?.hourlyRate ?? 0, moldCost: moldCost, marginPercent: marginPercent)
         
         return PricingCalculator.calculateOffer(input, usingMold: usingMold)
@@ -43,7 +43,10 @@ struct CreateOfferView: View {
         NavigationStack {
             Form {
                 Section {
-                    TextField("Client name", text: $clientName)
+                    LabeledContent("Client Name") {
+                        TextField("", text: $clientName)
+                            .multilineTextAlignment(.trailing)
+                    }
                     Picker("Box Template", selection: $selectedTemplate) {
                         ForEach(allTemplates) { template in
                             Text(template.name).tag(template as BoxTemplate?)
@@ -52,8 +55,15 @@ struct CreateOfferView: View {
                 }
                 
                 Section {
-                    TextField("Quantity", text: $quantityText)
-                        .keyboardType(.decimalPad)
+                    LabeledContent("Quantity"){
+                        HStack {
+                            TextField("0", text: $quantityText)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                            Text("pcs")
+                                .foregroundStyle(.secondary)
+                        }
+                    }
                     Toggle("Using Mold", isOn: $usingMold)
                     
                     if usingMold {
@@ -69,34 +79,41 @@ struct CreateOfferView: View {
                 
                 if let result = calculationResult {
                     Section {
-                        HStack {
-                            Text("Materials costs ")
-                            Text(result.materialCost, format: .currency(code: "EUR"))
-                        }
-                        HStack {
-                            Text("Labor costs ")
-                            Text(result.laborCost, format: .currency(code: "EUR"))
-                        }
-                        HStack {
-                            Text("Mold costs ")
-                            Text(result.moldCost, format: .currency(code: "EUR"))
-                        }
-                        HStack {
-                            Text("Subtotal is ")
-                            Text(result.subTotal, format: .currency(code: "EUR"))
-                        }
-                        HStack {
-                            Text("Total is ")
-                            Text(result.total, format: .currency(code: "EUR"))
-                        }
-                        HStack {
-                            Text("Profit: ")
-                            Text(result.profitAmount, format: .currency(code: "EUR"))
-                        }
-                        HStack {
-                            Text("Cost per unit: ")
+                        VStack(spacing: 6) {
+                            Text("PRICE PER BOX")
+                                .font(.system(.caption, design: .monospaced))
+                                .tracking(1.5)
+                                .foregroundStyle(.secondary)
                             Text(result.costPerUnit, format: .currency(code: "EUR"))
+                                .font(.system(size: 56, weight: .bold, design: .monospaced))
+                                .foregroundStyle(Color.accentColor)
+                                .minimumScaleFactor(0.5)
+                                .lineLimit(1)
+                            Text("\(result.quantity) boxes")
+                                .font(.subheadline)
+                                .foregroundStyle(.secondary)
                         }
+                        .frame(maxWidth: .infinity)
+                        .listRowBackground(Color.clear)
+                    }
+                    Section {
+                        LabeledContent("Materials:", value: result.materialCost, format: .currency(code: "EUR"))
+                            .font(.system(.body, design: .monospaced))
+                        LabeledContent("Labor:", value: result.laborCost, format: .currency(code: "EUR"))
+                            .font(.system(.body, design: .monospaced))
+                        LabeledContent("Molds:", value: result.moldCost, format: .currency(code: "EUR"))
+                            .font(.system(.body, design: .monospaced))
+                        LabeledContent("Subtotal:", value: result.subTotal, format: .currency(code: "EUR"))
+                            .font(.system(.body, design: .monospaced))
+                        LabeledContent {
+                            Text(result.total, format: .currency(code: "EUR"))
+                                .font(.system(.title3, design: .monospaced, weight: .bold))
+                        } label: {
+                            Text("Total")
+                                .font(.headline)
+                        }
+                        LabeledContent("Profit:", value: result.profitAmount, format: .currency(code: "EUR"))
+                            .font(.system(.body, design: .monospaced))
                     }
                 }
             }
@@ -111,7 +128,7 @@ struct CreateOfferView: View {
                         return
                     }
                     if usingMold == true {
-                        guard let moldCost = Double(moldCostText), moldCost >= 0 else {
+                        guard let moldCost = moldCostText.asDouble, moldCost >= 0 else {
                             errorMessage = "Please enter a valid mold cost"
                             return
                         }

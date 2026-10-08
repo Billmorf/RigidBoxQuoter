@@ -23,42 +23,58 @@ struct OfferDetailView: View {
     var body: some View {
         NavigationStack{
             List {
-                Section("Client") {
-                    Text(offer.clientName)
-                }
-                Section("Box") {
-                    Text(offer.boxTemplateName)
-                    Text("Quantity: \(offer.quantity)")
-                }
-                Section("Cost Breakdown"){
-                    HStack {
-                        Text("Materials costs ")
-                        Text(offer.materialCost, format: .currency(code: "EUR"))
-                    }
-                    HStack {
-                        Text("Labor costs ")
-                        Text(offer.laborCost, format: .currency(code: "EUR"))
-                    }
-                    HStack {
-                        Text("Mold costs ")
-                        Text(offer.moldCost, format: .currency(code: "EUR"))
-                    }
-                    HStack {
-                        Text("Subtotal is ")
-                        Text(offer.subTotal, format: .currency(code: "EUR"))
-                    }
-                    HStack {
-                        Text("Total is ")
-                        Text(offer.total, format: .currency(code: "EUR"))
-                    }
-                    HStack {
-                        Text("Profit: ")
-                        Text(offer.profitAmount, format: .currency(code: "EUR"))
-                    }
-                    HStack {
-                        Text("Cost per unit: ")
+                Section {
+                    VStack(spacing: 6) {
+                        Text("PRICE PER BOX")
+                            .font(.system(.caption, design: .monospaced))
+                            .tracking(1.5)
+                            .foregroundStyle(.secondary)
                         Text(offer.costPerUnit, format: .currency(code: "EUR"))
+                            .font(.system(size: 56, weight: .bold, design: .monospaced))
+                            .foregroundStyle(Color.accentColor)
+                            .minimumScaleFactor(0.5)
+                            .lineLimit(1)
                     }
+                    .frame(maxWidth: .infinity)
+                    .listRowBackground(Color.clear)
+                }
+                Section{
+                    Text(offer.clientName)
+                } header: {
+                    Text("CLIENT")
+                        .font(.system(.caption, design: .monospaced))
+                        .tracking(1)
+                }
+                Section{
+                    LabeledContent("Template", value: offer.boxTemplateName)
+                    LabeledContent("Quantity", value: "\(offer.quantity)")
+                } header: {
+                    Text("BOX")
+                        .font(.system(.caption, design: .monospaced))
+                        .tracking(1)
+                }
+                Section{
+                    LabeledContent("Materials:", value: offer.materialCost, format: .currency(code: "EUR"))
+                        .font(.system(.body, design: .monospaced))
+                    LabeledContent("Labor:", value: offer.laborCost, format: .currency(code: "EUR"))
+                        .font(.system(.body, design: .monospaced))
+                    LabeledContent("Molds:", value: offer.moldCost, format: .currency(code: "EUR"))
+                        .font(.system(.body, design: .monospaced))
+                    LabeledContent("Subtotal:", value: offer.subTotal, format: .currency(code: "EUR"))
+                        .font(.system(.body, design: .monospaced))
+                    LabeledContent {
+                        Text(offer.total, format: .currency(code: "EUR"))
+                            .font(.system(.title3, design: .monospaced, weight: .bold))
+                    } label: {
+                        Text("Total")
+                            .font(.headline)
+                    }
+                    LabeledContent("Profit:", value: offer.profitAmount, format: .currency(code: "EUR"))
+                        .font(.system(.body, design: .monospaced))
+                } header: {
+                    Text("COST BREAKDOWN")
+                        .font(.system(.caption, design: .monospaced))
+                        .tracking(1)
                 }
             }
             .navigationTitle(offer.clientName)
@@ -80,5 +96,5 @@ struct OfferDetailView: View {
 }
 
 #Preview {
-        OfferDetailView(offer: Offer(clientName: "Γιώργος Παπαδόπουλος", boxTemplateName: "Κουτί μικρό", quantity: 100, materialCost: 19, laborCost: 100, moldCost: 30, subTotal: 149, total: 178.8, marginPercent: 20))
-    }
+    OfferDetailView(offer: Offer(clientName: "Γιώργος Παπαδόπουλος", boxTemplateName: "Κουτί μικρό", quantity: 100, materialCost: 19, laborCost: 100, moldCost: 30, subTotal: 149, total: 178.8, marginPercent: 20))
+}
