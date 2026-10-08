@@ -29,7 +29,7 @@ struct CreateOfferView: View {
               let structuralHeight = template.structuralMaterial.sheetHeight,
               let coveringWidth = template.coveringMaterial.sheetWidth,
               let coveringHeight = template.coveringMaterial.sheetHeight
-        else { return nil }
+                else { return nil }
         
         let boxDimensions = BoxDimensions(baseLength: template.baseLength, baseWidth: template.baseWidth, baseHeight: template.baseHeight, lidHeight: template.lidHeight)
         let structuralPricing = MaterialPricingInput(pricePerUnit: template.structuralMaterial.pricePerUnit, sheetWidth: structuralWidth, sheetHeight: structuralHeight)
@@ -43,7 +43,10 @@ struct CreateOfferView: View {
         NavigationStack {
             Form {
                 Section {
-                    TextField("Client name", text: $clientName)
+                    LabeledContent("Client Name") {
+                        TextField("", text: $clientName)
+                            .multilineTextAlignment(.trailing)
+                    }
                     Picker("Box Template", selection: $selectedTemplate) {
                         ForEach(allTemplates) { template in
                             Text(template.name).tag(template as BoxTemplate?)
@@ -52,8 +55,15 @@ struct CreateOfferView: View {
                 }
                 
                 Section {
-                    TextField("Quantity", text: $quantityText)
-                        .keyboardType(.decimalPad)
+                    LabeledContent("Quantity"){
+                        HStack {
+                            TextField("0", text: $quantityText)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                            Text("pcs")
+                                .foregroundStyle(.secondary)
+                        }
+                    }
                     Toggle("Using Mold", isOn: $usingMold)
                     
                     if usingMold {
