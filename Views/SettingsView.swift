@@ -46,7 +46,7 @@ struct SettingsView: View {
             }
             .toolbar {
                 Button("Save") {
-                    guard let newRate = Double(hourlyRateText), newRate > 0 else {
+                    guard let newRate = hourlyRateText.asDouble, newRate > 0 else {
                         errorMessage = "Please enter a valid hourly rate."
                         return
                     }

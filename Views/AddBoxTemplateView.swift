@@ -68,11 +68,11 @@ struct AddBoxTemplateView: View {
                             errorMessage = "Please enter a name"
                             return
                         }
-                        guard let bLength = Double(baseLength),let bWidth = Double(baseWidth),let bHeight = Double(baseHeight),let lHeight = Double(lidHeight), bLength > 0, bWidth > 0, bHeight > 0, lHeight > 0 && lHeight <= bHeight else {
+                        guard let bLength = baseLength.asDouble,let bWidth = baseWidth.asDouble,let bHeight = baseHeight.asDouble,let lHeight = lidHeight.asDouble, bLength > 0, bWidth > 0, bHeight > 0, lHeight > 0 && lHeight <= bHeight else {
                             errorMessage = "Please enter valid dimensions"
                             return
                         }
-                        guard let labor = Double(laborMinutes), labor > 0 else {
+                        guard let labor = laborMinutes.asDouble, labor > 0 else {
                             errorMessage = "Please enter valid labor time"
                             return
                         }

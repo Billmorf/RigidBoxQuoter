@@ -74,7 +74,7 @@ struct RawMaterialListView: View {
             .alert("Update price", isPresented: $showingEditAlert) {
                 TextField("Price", text: $editedPriceText)
                 Button("Save") {
-                    if let newPrice = Double(editedPriceText), let material = materialBeingEdited {
+                    if let newPrice = editedPriceText.asDouble, let material = materialBeingEdited {
                         viewModel?.updatePrice(for: material, newPrice: newPrice)
                     }
                 }

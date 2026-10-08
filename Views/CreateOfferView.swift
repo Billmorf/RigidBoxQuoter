@@ -34,7 +34,7 @@ struct CreateOfferView: View {
         let boxDimensions = BoxDimensions(baseLength: template.baseLength, baseWidth: template.baseWidth, baseHeight: template.baseHeight, lidHeight: template.lidHeight)
         let structuralPricing = MaterialPricingInput(pricePerUnit: template.structuralMaterial.pricePerUnit, sheetWidth: structuralWidth, sheetHeight: structuralHeight)
         let coveringPricing = MaterialPricingInput(pricePerUnit: template.coveringMaterial.pricePerUnit, sheetWidth: coveringWidth, sheetHeight: coveringHeight)
-        let moldCost = usingMold ? Double(moldCostText) ?? 0 : 0
+        let moldCost = usingMold ? moldCostText.asDouble ?? 0 : 0
         let input = OfferCalculationInput(box: boxDimensions, structuralMaterial: structuralPricing, coveringMaterial: coveringPricing, laborMinutes: template.laborMinutes, quantity: quantity, hourlyRate: allSettings.first?.hourlyRate ?? 0, moldCost: moldCost, marginPercent: marginPercent)
         
         return PricingCalculator.calculateOffer(input, usingMold: usingMold)
@@ -118,7 +118,7 @@ struct CreateOfferView: View {
                         return
                     }
                     if usingMold == true {
-                        guard let moldCost = Double(moldCostText), moldCost >= 0 else {
+                        guard let moldCost = moldCostText.asDouble, moldCost >= 0 else {
                             errorMessage = "Please enter a valid mold cost"
                             return
                         }

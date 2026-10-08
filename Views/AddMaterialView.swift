@@ -23,10 +23,13 @@ struct AddMaterialView: View {
         NavigationStack {
             Form {
                 Section{
-                    TextField("Name", text: $name)
+                    LabeledContent("Name") {
+                        TextField("e.g. Greyboard 2.0mm", text: $name)
+                            .multilineTextAlignment(.trailing)
+                    }
                 }
                 Section {
-                    Picker("Material", selection: $materialSelected) {
+                    Picker("Unit", selection: $materialSelected) {
                         ForEach(MaterialUnit.allCases, id: \.self) {
                             Text($0.rawValue.capitalized)
                         }
@@ -34,14 +37,37 @@ struct AddMaterialView: View {
                     
                     
                     if materialSelected == .sheet {
-                        TextField("Width", text: $sheetWidth)
-                            .keyboardType(.decimalPad)
-                        TextField("Height", text: $sheetHeight)
-                            .keyboardType(.decimalPad)
+                        LabeledContent("Width"){
+                            HStack {
+                                TextField("0", text: $sheetWidth)
+                                    .keyboardType(.decimalPad)
+                                    .multilineTextAlignment(.trailing)
+                                Text("cm")
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+                        LabeledContent("Height"){
+                            HStack {
+                                TextField("0", text: $sheetHeight)
+                                    .keyboardType(.decimalPad)
+                                    .multilineTextAlignment(.trailing)
+                                Text("cm")
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
                     }
                 }
-                
-                TextField("Price", text: $price)
+                Section{
+                    LabeledContent("Price") {
+                        HStack {
+                            TextField("0", text: $price)
+                                .multilineTextAlignment(.trailing)
+                                .keyboardType(.decimalPad)
+                            Text("€")
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -55,19 +81,17 @@ struct AddMaterialView: View {
                             errorMessage = "Please enter a material name."
                             return
                         }
-                        guard let newPrice = Double(price), newPrice > 0 else {
+                        guard let newPrice = price.asDouble, newPrice > 0 else {
                             errorMessage = "Please enter a valid price."
                             return
                         }
                         if materialSelected == .sheet {
-                            if materialSelected == .sheet {
-                                guard let shWidth = Double(sheetWidth), let shHeight = Double(sheetHeight), shWidth > 0, shHeight > 0 else {
-                                    errorMessage = "Please enter valid dimensions."
-                                    return
-                                }
-                                viewModel.addMaterial(name: name, unit: materialSelected, pricePerUnit: newPrice, sheetWidth: shWidth, sheetHeight: shHeight)
-                                dismiss()
+                            guard let shWidth = sheetWidth.asDouble, let shHeight = sheetHeight.asDouble, shWidth > 0, shHeight > 0 else {
+                                errorMessage = "Please enter valid dimensions."
+                                return
                             }
+                            viewModel.addMaterial(name: name, unit: materialSelected, pricePerUnit: newPrice, sheetWidth: shWidth, sheetHeight: shHeight)
+                            dismiss()
                         } else {
                             viewModel.addMaterial(name: name, unit: materialSelected, pricePerUnit: newPrice, sheetWidth: nil, sheetHeight: nil)
                             dismiss()
