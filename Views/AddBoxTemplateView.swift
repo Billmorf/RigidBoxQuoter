@@ -27,20 +27,60 @@ struct AddBoxTemplateView: View {
         NavigationStack {
             Form {
                 Section {
-                    TextField("Name", text: $name)
+                    LabeledContent("Name") {
+                        TextField("e.g. 15x15x10/3", text: $name)
+                            .multilineTextAlignment(.trailing)
+                    }
                 }
                 
                 Section {
-                    TextField("Base Length", text: $baseLength)
-                        .keyboardType(.decimalPad)
-                    TextField("Base Width", text: $baseWidth)
-                        .keyboardType(.decimalPad)
-                    TextField("Base Height", text: $baseHeight)
-                        .keyboardType(.decimalPad)
-                    TextField("Lid Height", text: $lidHeight)
-                        .keyboardType(.decimalPad)
-                    TextField("Labor Minutes", text: $laborMinutes)
-                        .keyboardType(.decimalPad)
+                    LabeledContent("Length") {
+                        HStack {
+                            TextField("0", text: $baseLength)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                            Text("cm")
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    LabeledContent("Width") {
+                        HStack {
+                            TextField("0", text: $baseWidth)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                            Text("cm")
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    LabeledContent("Height") {
+                        HStack {
+                            TextField("0", text: $baseHeight)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                            Text("cm")
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    LabeledContent("Lid Height") {
+                        HStack {
+                            TextField("0", text: $lidHeight)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                            Text("cm")
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                    LabeledContent("Labor Minutes") {
+                        HStack {
+                            TextField("0", text: $laborMinutes)
+                                .keyboardType(.decimalPad)
+                                .multilineTextAlignment(.trailing)
+                            Text("min")
+                                .foregroundStyle(.secondary)
+                        }
+                    }
+                } footer: {
+                    Text("Lid length and width are derived at +0.5 cm.")
                 }
                 
                 Section {
@@ -68,8 +108,12 @@ struct AddBoxTemplateView: View {
                             errorMessage = "Please enter a name"
                             return
                         }
-                        guard let bLength = baseLength.asDouble,let bWidth = baseWidth.asDouble,let bHeight = baseHeight.asDouble,let lHeight = lidHeight.asDouble, bLength > 0, bWidth > 0, bHeight > 0, lHeight > 0 && lHeight <= bHeight else {
+                        guard let bLength = baseLength.asDouble,let bWidth = baseWidth.asDouble,let bHeight = baseHeight.asDouble,let lHeight = lidHeight.asDouble, bLength > 0, bWidth > 0, bHeight > 0, lHeight > 0 else {
                             errorMessage = "Please enter valid dimensions"
+                            return
+                        }
+                        guard lHeight <= bHeight else {
+                            errorMessage = "Lid height can't be larger than the base height"
                             return
                         }
                         guard let labor = laborMinutes.asDouble, labor > 0 else {
@@ -80,6 +124,7 @@ struct AddBoxTemplateView: View {
                             errorMessage = "Please select a material"
                             return
                         }
+                        
                         
                         viewModel.addTemplate(name: name,baseLength: bLength,baseWidth: bWidth,baseHeight: bHeight,lidHeight: lHeight,laborMinutes: labor,structuralMaterial: structural,coveringMaterial: covering)
                         dismiss()
