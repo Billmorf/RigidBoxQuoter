@@ -21,6 +21,7 @@ struct CreateOfferView: View {
     @State private var moldCostText = ""
     @State private var marginPercent = 20.0
     @State private var errorMessage: String?
+    @State private var showingSavedAlert = false
     
     var calculationResult: OfferCalculationResult? {
         guard let template = selectedTemplate,
@@ -58,7 +59,7 @@ struct CreateOfferView: View {
                     LabeledContent("Quantity"){
                         HStack {
                             TextField("0", text: $quantityText)
-                                .keyboardType(.decimalPad)
+                                .keyboardType(.numberPad)
                                 .multilineTextAlignment(.trailing)
                             Text("pcs")
                                 .foregroundStyle(.secondary)
@@ -140,7 +141,14 @@ struct CreateOfferView: View {
                     guard let result = calculationResult else { return }
                     let offer = Offer(clientName: clientName, boxTemplateName: template.name, quantity: result.quantity, materialCost: result.materialCost, laborCost: result.laborCost, moldCost: result.moldCost, subTotal: result.subTotal, total: result.total, marginPercent: marginPercent)
                     modelContext.insert(offer)
-                    dismiss()
+                    
+                    clientName = ""
+                    selectedTemplate = nil
+                    quantityText = ""
+                    usingMold = false
+                    moldCostText = ""
+                    marginPercent = 20.0
+                    showingSavedAlert = true
                 }
             }
             .alert("Invalid Input", isPresented: Binding(
@@ -151,6 +159,9 @@ struct CreateOfferView: View {
             } message: {
                 Text(errorMessage ?? "")
             }
+        }
+        .alert("Offer saved", isPresented: $showingSavedAlert) {
+            Button("OK") {}
         }
     }
 }
