@@ -10,6 +10,7 @@ import SwiftData
 
 struct OfferListView: View {
     @Query(sort: \Offer.date, order: .reverse) private var allOffers: [Offer]
+    @Environment(\.modelContext) private var modelContext
     @State private var searchText: String = ""
     
     var filteredOffers: [Offer] {
@@ -34,6 +35,12 @@ struct OfferListView: View {
                                 LabeledContent("Total:", value: offer.total, format: .currency(code: "EUR"))
                                     .monospacedDigit()
                             }
+                        }
+                    }
+                    .onDelete { indexSet in
+                        let offersToDelete = indexSet.map { filteredOffers[$0] }
+                        for offer in offersToDelete {
+                            modelContext.delete(offer)
                         }
                     }
                 }
