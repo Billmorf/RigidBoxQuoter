@@ -18,6 +18,14 @@ struct RawMaterialListView: View {
     @State private var showingEditAlert: Bool = false
     @State private var errorMessage : String?
     
+    func subtitle(for material: RawMaterial) -> String {
+        let unit = material.unit.rawValue.uppercased()
+        if let width = material.sheetWidth, let height = material.sheetHeight {
+            return "\(unit) · \(String(format: "%g", width)) x \(String(format: "%g", height)) CM"
+        }
+        return unit
+    }
+    
     var body: some View {
         NavigationStack {
             Group {
@@ -27,14 +35,19 @@ struct RawMaterialListView: View {
                     List {
                         ForEach(viewModel?.materials ?? []) { material in
                             HStack{
-                                Text(material.name)
-                                Text(material.unit.rawValue)
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(material.name)
+                                    Text(subtitle(for: material))
+                                        .font(.system(.caption, design: .monospaced))
+                                        .foregroundStyle(.secondary)
+                                }
+                                Spacer()
                                 Text(material.pricePerUnit, format: .currency(code: "EUR"))
                                     .monospacedDigit()
-                                Spacer()
                                 Image(systemName: "pencil")
                                     .foregroundStyle(.secondary)
                             }
+                            .contentShape(Rectangle())
                             .onTapGesture {
                                 materialBeingEdited = material
                                 editedPriceText = String(material.pricePerUnit)
@@ -61,6 +74,7 @@ struct RawMaterialListView: View {
                     viewModel = RawMaterialListViewModel(modelContext: modelContext)
                 }
             }
+            .navigationTitle("Materials")
             .toolbar {
                 Button("Add material", systemImage: "plus") {
                     showingAddSheet.toggle()
@@ -73,6 +87,7 @@ struct RawMaterialListView: View {
             }
             .alert("Update price", isPresented: $showingEditAlert) {
                 TextField("Price", text: $editedPriceText)
+                    .keyboardType(.decimalPad)
                 Button("Save") {
                     if let newPrice = editedPriceText.asDouble, let material = materialBeingEdited {
                         viewModel?.updatePrice(for: material, newPrice: newPrice)
