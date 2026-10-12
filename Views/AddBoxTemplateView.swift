@@ -23,6 +23,17 @@ struct AddBoxTemplateView: View {
     @State private var laborMinutes = ""
     @State private var errorMessage: String?
     
+    
+    var previewDimensions: BoxDimensions? {
+        guard let length = baseLength.asDouble,
+              let width = baseWidth.asDouble,
+              let height = baseHeight.asDouble,
+              let lid = lidHeight.asDouble,
+              length > 0, width > 0, height > 0, lid > 0
+                else {return nil}
+        return BoxDimensions(baseLength: length, baseWidth: width, baseHeight: height, lidHeight: lid)
+    }
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -95,6 +106,33 @@ struct AddBoxTemplateView: View {
                         }
                     }
                 }
+                
+                
+                if let box = previewDimensions {
+                    let pieces = PricingCalculator.pieceDimensions(for: box)
+                    Section {
+                        LabeledContent("Board Base") {
+                            Text("\(String(format: "%.1f", pieces.boardBase.width)) x \(String(format: "%.1f", pieces.boardBase.length)) cm")
+                                .monospacedDigit()
+                        }
+                        LabeledContent("Board Lid") {
+                            Text("\(String(format: "%.1f", pieces.boardLid.width)) x \(String(format: "%.1f", pieces.boardLid.length)) cm")
+                                .monospacedDigit()
+                        }
+                        LabeledContent("Covering Base") {
+                            Text("\(String(format: "%.1f", pieces.coveringBase.width)) x \(String(format: "%.1f", pieces.coveringBase.length)) cm")
+                                .monospacedDigit()
+                        }
+                        LabeledContent("Covering Lid") {
+                            Text("\(String(format: "%.1f", pieces.coveringLid.width)) x \(String(format: "%.1f", pieces.coveringLid.length)) cm")
+                                .monospacedDigit()
+                        }
+                    } header: {
+                        Text("DERIVED CUT PIECES")
+                            .font(.system(.caption, design: .monospaced))
+                            .tracking(1)
+                    }
+                }
             }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -150,3 +188,4 @@ struct AddBoxTemplateView: View {
     return AddBoxTemplateView(viewModel: viewModel)
         .modelContainer(container)
 }
+
