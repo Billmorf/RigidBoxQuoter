@@ -10,11 +10,11 @@ import SwiftData
 
 struct SettingsView: View {
     @Environment(\.modelContext) private var modelContext
-    @Environment(\.dismiss) private var dismiss
     @Query private var allSettings: [AppSettings]
     @State private var hourlyRateText: String = ""
     @State private var errorMessage: String?
     @State private var showingInfo: Bool = false
+    @State private var showingSavedAlert = false
     
     var body: some View {
         NavigationStack {
@@ -56,7 +56,7 @@ struct SettingsView: View {
                         let newSetting = AppSettings(hourlyRate: newRate)
                         modelContext.insert(newSetting)
                     }
-                    dismiss()
+                    showingSavedAlert = true
                 }
             }
             .alert("Invalid Input",isPresented: Binding(
@@ -67,6 +67,9 @@ struct SettingsView: View {
             } message: {
                 Text(errorMessage ?? "")
             }
+        }
+        .alert("Setting Saved", isPresented: $showingSavedAlert){
+            Button("OK") {}
         }
     }
 }
