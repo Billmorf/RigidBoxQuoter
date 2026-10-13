@@ -28,12 +28,21 @@ struct OfferListView: View {
                 List {
                     ForEach(filteredOffers) { offer in
                         NavigationLink(destination: OfferDetailView(offer: offer)) {
-                            VStack {
-                                LabeledContent("Client:", value: offer.clientName)
-                                LabeledContent("Date:", value: offer.date.formatted(date: .abbreviated, time: .omitted))
-                                LabeledContent("Box:", value: offer.boxTemplateName)
-                                LabeledContent("Total:", value: offer.total, format: .currency(code: "EUR"))
-                                    .monospacedDigit()
+                            HStack {
+                                VStack(alignment: .leading) {
+                                    Text(offer.clientName)
+                                    Text("\(offer.boxTemplateName) · \(offer.quantity) PCS")
+                                        .font(.system(.caption, design: .monospaced))
+                                        .foregroundStyle(.secondary)
+                                }
+                                Spacer()
+                                VStack(alignment: .trailing) {
+                                    Text(offer.total, format: .currency(code: "EUR"))
+                                        .monospacedDigit()
+                                    Text(offer.date.formatted(date: .abbreviated, time: .omitted))
+                                        .font(.system(.caption, design: .monospaced))
+                                        .foregroundStyle(.secondary)
+                                }
                             }
                         }
                     }
@@ -45,6 +54,7 @@ struct OfferListView: View {
                     }
                 }
                 .searchable(text: $searchText, prompt: "Search by client")
+                .navigationTitle("History")
             }
         }
     }
