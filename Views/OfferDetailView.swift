@@ -21,76 +21,74 @@ struct OfferDetailView: View {
     @State private var showingPrintView = false
     
     var body: some View {
-        NavigationStack{
-            List {
-                Section {
-                    VStack(spacing: 6) {
-                        Text("PRICE PER BOX")
-                            .font(.system(.caption, design: .monospaced))
-                            .tracking(1.5)
-                            .foregroundStyle(.secondary)
-                        Text(offer.costPerUnit, format: .currency(code: "EUR"))
-                            .font(.system(size: 56, weight: .bold, design: .monospaced))
-                            .foregroundStyle(Color.accentColor)
-                            .minimumScaleFactor(0.5)
-                            .lineLimit(1)
-                    }
-                    .frame(maxWidth: .infinity)
-                    .listRowBackground(Color.clear)
-                }
-                Section{
-                    Text(offer.clientName)
-                } header: {
-                    Text("CLIENT")
+        List {
+            Section {
+                VStack(spacing: 6) {
+                    Text("PRICE PER BOX")
                         .font(.system(.caption, design: .monospaced))
-                        .tracking(1)
+                        .tracking(1.5)
+                        .foregroundStyle(.secondary)
+                    Text(offer.costPerUnit, format: .currency(code: "EUR"))
+                        .font(.system(size: 56, weight: .bold, design: .monospaced))
+                        .foregroundStyle(Color.accentColor)
+                        .minimumScaleFactor(0.5)
+                        .lineLimit(1)
                 }
-                Section{
-                    LabeledContent("Template", value: offer.boxTemplateName)
-                    LabeledContent("Quantity", value: "\(offer.quantity)")
-                } header: {
-                    Text("BOX")
-                        .font(.system(.caption, design: .monospaced))
-                        .tracking(1)
+                .frame(maxWidth: .infinity)
+                .listRowBackground(Color.clear)
+            }
+            Section{
+                Text(offer.clientName)
+            } header: {
+                Text("CLIENT")
+                    .font(.system(.caption, design: .monospaced))
+                    .tracking(1)
+            }
+            Section{
+                LabeledContent("Template", value: offer.boxTemplateName)
+                LabeledContent("Quantity", value: "\(offer.quantity)")
+            } header: {
+                Text("BOX")
+                    .font(.system(.caption, design: .monospaced))
+                    .tracking(1)
+            }
+            Section{
+                LabeledContent("Materials:", value: offer.materialCost, format: .currency(code: "EUR"))
+                    .font(.system(.body, design: .monospaced))
+                LabeledContent("Labor:", value: offer.laborCost, format: .currency(code: "EUR"))
+                    .font(.system(.body, design: .monospaced))
+                LabeledContent("Molds:", value: offer.moldCost, format: .currency(code: "EUR"))
+                    .font(.system(.body, design: .monospaced))
+                LabeledContent("Subtotal:", value: offer.subTotal, format: .currency(code: "EUR"))
+                    .font(.system(.body, design: .monospaced))
+                LabeledContent {
+                    Text(offer.total, format: .currency(code: "EUR"))
+                        .font(.system(.title3, design: .monospaced, weight: .bold))
+                } label: {
+                    Text("Total")
+                        .font(.headline)
                 }
-                Section{
-                    LabeledContent("Materials:", value: offer.materialCost, format: .currency(code: "EUR"))
-                        .font(.system(.body, design: .monospaced))
-                    LabeledContent("Labor:", value: offer.laborCost, format: .currency(code: "EUR"))
-                        .font(.system(.body, design: .monospaced))
-                    LabeledContent("Molds:", value: offer.moldCost, format: .currency(code: "EUR"))
-                        .font(.system(.body, design: .monospaced))
-                    LabeledContent("Subtotal:", value: offer.subTotal, format: .currency(code: "EUR"))
-                        .font(.system(.body, design: .monospaced))
-                    LabeledContent {
-                        Text(offer.total, format: .currency(code: "EUR"))
-                            .font(.system(.title3, design: .monospaced, weight: .bold))
-                    } label: {
-                        Text("Total")
-                            .font(.headline)
-                    }
-                    LabeledContent("Profit:", value: offer.profitAmount, format: .currency(code: "EUR"))
-                        .font(.system(.body, design: .monospaced))
-                } header: {
-                    Text("COST BREAKDOWN")
-                        .font(.system(.caption, design: .monospaced))
-                        .tracking(1)
+                LabeledContent("Profit:", value: offer.profitAmount, format: .currency(code: "EUR"))
+                    .font(.system(.body, design: .monospaced))
+            } header: {
+                Text("COST BREAKDOWN")
+                    .font(.system(.caption, design: .monospaced))
+                    .tracking(1)
+            }
+        }
+        .navigationTitle(offer.clientName)
+        .toolbar {
+            Button("Preview"){
+                showingPrintView.toggle()
+            }
+            Button("Share PDF"){
+                if let url = PDFGenerator.generate(for: offer) {
+                    presentShareSheet(url: url)
                 }
             }
-            .navigationTitle(offer.clientName)
-            .toolbar {
-                Button("Preview"){
-                    showingPrintView.toggle()
-                }
-                Button("Share PDF"){
-                    if let url = PDFGenerator.generate(for: offer) {
-                        presentShareSheet(url: url)
-                    }
-                }
-            }
-            .sheet(isPresented: $showingPrintView){
-                OfferPrintableView(offer: offer)
-            }
+        }
+        .sheet(isPresented: $showingPrintView){
+            OfferPrintableView(offer: offer)
         }
     }
 }
