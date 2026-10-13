@@ -14,7 +14,7 @@ enum PDFGenerator {
         let view = OfferPrintableContent(offer: offer)
         let renderer = ImageRenderer(content: view)
         
-        let pageSize = CGSize(width: 595, height: 842) // A4 σε points
+        let pageSize = CGSize(width: 595, height: 842)
         renderer.proposedSize = .init(pageSize)
         
         let url = URL.documentsDirectory.appending(path: "Offer-\(offer.clientName).pdf")
@@ -26,11 +26,6 @@ enum PDFGenerator {
             renderContext(pdfContext)
             pdfContext.endPDFPage()
             pdfContext.closePDF()
-        }
-        
-        if let data = try? Data(contentsOf: url) {
-            let header = String(data: data.prefix(8), encoding: .ascii) ?? "unreadable"
-            print("File header: \(header)")
         }
         
         return url
