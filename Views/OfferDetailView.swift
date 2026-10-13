@@ -36,13 +36,7 @@ struct OfferDetailView: View {
                 }
                 .frame(maxWidth: .infinity)
                 .listRowBackground(Color.clear)
-            }
-            Section{
-                Text(offer.clientName)
-            } header: {
-                Text("CLIENT")
-                    .font(.system(.caption, design: .monospaced))
-                    .tracking(1)
+                
             }
             Section{
                 LabeledContent("Template", value: offer.boxTemplateName)
@@ -94,5 +88,7 @@ struct OfferDetailView: View {
 }
 
 #Preview {
-    OfferDetailView(offer: Offer(clientName: "Γιώργος Παπαδόπουλος", boxTemplateName: "Κουτί μικρό", quantity: 100, materialCost: 19, laborCost: 100, moldCost: 30, subTotal: 149, total: 178.8, marginPercent: 20))
+    NavigationStack {
+        OfferDetailView(offer: Offer(clientName: "Γιώργος Παπαδόπουλος", boxTemplateName: "Κουτί μικρό", quantity: 100, materialCost: 19, laborCost: 100, moldCost: 30, subTotal: 149, total: 178.8, marginPercent: 20))
+    }
 }
