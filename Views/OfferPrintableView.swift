@@ -14,14 +14,16 @@ struct OfferPrintableView: View {
     
     var body: some View {
         NavigationStack {
-            OfferPrintableContent(offer: offer)
-                .toolbar {
-                    ToolbarItem(placement: .cancellationAction) {
-                        Button("Back"){
-                            dismiss()
-                        }
+            ScrollView {
+                OfferPrintableContent(offer: offer)
+            }
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Back"){
+                        dismiss()
                     }
                 }
+            }
         }
     }
 }
