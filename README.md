@@ -6,11 +6,10 @@ portfolio project with SwiftUI, SwiftData and MVVM, and based on real
 production workflows.
 
 <p>
+  <img src="docs/screenshots/materials.png" width="220" alt="Materials">
   <img src="docs/screenshots/new-offer.png" width="220" alt="New offer with live price per box">
   <img src="docs/screenshots/history.png" width="220" alt="Offer history">
   <img src="docs/screenshots/pdf.png" width="220" alt="Client-facing PDF">
-  <img src="docs/screenshots/materials.png" width="220" alt="Materials">
-  <img src="docs/screenshots/templates.png" width="220" alt="Templates">
 
 </p>
 
